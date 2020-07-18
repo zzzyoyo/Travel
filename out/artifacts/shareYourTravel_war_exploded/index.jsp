@@ -43,7 +43,12 @@
           aaa
         </div>
       </div>
-
+      <div class="item">
+        <img src="${pageContext.request.contextPath}/resources/image/5b8abc339a62b.jpg" alt="...">
+        <div class="carousel-caption">
+          aaa
+        </div>
+      </div>
     </div>
 
     <!-- Controls -->
