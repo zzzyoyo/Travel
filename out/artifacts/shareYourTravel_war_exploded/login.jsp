@@ -18,17 +18,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 </head>
-<body style="background-image: url(resources/image/5b8abc339a62b.jpg)">
+<body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 50%;margin: auto">
-    <form>
+    <p class="help-block" style="color: red">${requestScope.message}</p>
+    <form action="<%=request.getContextPath()%>/login" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address / Username</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="邮箱/用户名">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="邮箱/用户名" name="emailOrName" value="${param.emailOrName}" required>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password" required>
         </div>
         <button type="submit" class="btn btn-default">登录</button>
         <a href="register.jsp"><p class="help-block">没有注册？点击此处注册<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></p></a>

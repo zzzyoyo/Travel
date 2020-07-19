@@ -12,7 +12,7 @@ public class JdbcUtils {
     private static DataSource dataSource;
 
     static {
-        dataSource = new ComboPooledDataSource("mvcApp");
+        dataSource = new ComboPooledDataSource("travelSource");
     }
 
     public static Connection getConnection() throws SQLException {

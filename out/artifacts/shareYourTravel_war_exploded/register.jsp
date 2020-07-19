@@ -49,7 +49,7 @@
             <label for="inputCaptcha" class="col-sm-2 control-label">Captcha</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="inputCaptcha" placeholder="验证码">
-                <img src="resources/image/5b8abc339a62b.jpg" style="width: 100px">
+                <img src="resources/image/background.jpg" style="width: 100px">
             </div>
         </div>
         <div class="form-group">

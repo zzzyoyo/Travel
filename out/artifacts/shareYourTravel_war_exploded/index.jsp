@@ -19,7 +19,7 @@
     <!-- Custom styles for this template -->
 
   </head>
-  <body>
+  <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
   <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -32,19 +32,19 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="${pageContext.request.contextPath}/resources/image/5b8abc339a62b.jpg" alt="...">
+        <img src="${pageContext.request.contextPath}/resources/image/demo.PNG" alt="...">
         <div class="carousel-caption">
           aaa
         </div>
       </div>
       <div class="item">
-        <img src="${pageContext.request.contextPath}/resources/image/5b8abc339a62b.jpg" alt="...">
+        <img src="${pageContext.request.contextPath}/resources/image/demo.PNG" alt="...">
         <div class="carousel-caption">
           aaa
         </div>
       </div>
       <div class="item">
-        <img src="${pageContext.request.contextPath}/resources/image/5b8abc339a62b.jpg" alt="...">
+        <img src="${pageContext.request.contextPath}/resources/image/demo.PNG" alt="...">
         <div class="carousel-caption">
           aaa
         </div>

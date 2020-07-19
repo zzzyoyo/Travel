@@ -1,4 +1,4 @@
-<%--
+<%@ page import="domain.User" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/18
@@ -13,6 +13,9 @@
     <title>Navigation</title>
 </head>
 <body>
+<%
+    User user = (User) session.getAttribute("userDetails");
+%>
 <div id="navigation">
     <nav class="navbar navbar-default">
         <div class="container-fluid" style="background: black">
@@ -27,9 +30,9 @@
                     <li><a href="#">首页</a></li>
                     <li><a href="#">搜索</a></li>
                     <c:choose>
-                        <c:when test='${sessionScope.get("userDetails")!=null}'>
+                        <c:when test='<%=user!=null%>'>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%="ZYR"%>> <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=user.getUsername()%> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">我的收藏</a></li>
                                     <li><a href="#">上传图片</a></li>
