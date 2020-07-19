@@ -18,6 +18,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 </head>
+<%
+    if(session.getAttribute("userDetails")!=null){
+        //已经登陆
+        response.sendRedirect(request.getContextPath());
+    }
+%>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 50%;margin: auto">

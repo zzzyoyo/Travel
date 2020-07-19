@@ -16,4 +16,9 @@ public class UserDao extends Dao<User>{
         System.out.println(user);
         return user;
     }
+
+    public long getCountWithName(String name) {
+        String sql = "SELECT count(*) FROM traveluser WHERE UserName = ?";
+        return getForValues(sql,name);
+    }
 }
