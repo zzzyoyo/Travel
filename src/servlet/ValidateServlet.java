@@ -51,7 +51,7 @@ public class ValidateServlet extends HttpServlet {
     private void checkCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String captcha = request.getParameter("captcha");
         String checkCode = (String) request.getSession().getAttribute("checkcode");//从服务器端的session中取出验证码
-        System.out.println("captcha:"+captcha+"  checkCode:"+checkCode);
+//        System.out.println("captcha:"+captcha+"  checkCode:"+checkCode);
         Map<String,String> map = new HashMap<>();
         if(captcha.equalsIgnoreCase(checkCode)){
             map.put("valid","true");

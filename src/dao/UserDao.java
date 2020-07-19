@@ -13,7 +13,7 @@ public class UserDao extends Dao<User>{
     public User getUserByNameOrEmail(String emailOrName){
         String sql = "SELECT Pass password, UID uid, UserName username, Email email FROM traveluser WHERE UserName = ? OR Email = ?";
         User user = get(sql,emailOrName,emailOrName);
-        System.out.println(user);
+        //System.out.println(user);
         return user;
     }
 
