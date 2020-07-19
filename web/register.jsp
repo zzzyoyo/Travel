@@ -22,7 +22,7 @@
 <body>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 70%;margin: auto">
-    <form class="form-horizontal" action="/register" method="post">
+    <form class="form-horizontal" action="${pageContext.request.contextPath}/register" method="post">
         <div class="form-group">
             <label for="inputUsername3" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
@@ -51,7 +51,7 @@
             <label for="inputCaptcha" class="col-sm-2 control-label">Captcha</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="inputCaptcha" placeholder="验证码" name="captcha">
-                <img src="resources/image/background.jpg" style="width: 100px">
+                <img src="${pageContext.request.contextPath}/drawImage" onclick="changeImg()" id="validateCodeImg">
             </div>
         </div>
         <div class="form-group">
@@ -69,6 +69,10 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 
 <script>
+    function changeImg(){
+        document.getElementById("validateCodeImg").src="${pageContext.request.contextPath}/drawImage?"+Math.random();//为了防止缓存必须采用不同的url
+    }
+
     $('form').bootstrapValidator({
         // 默认的提示消息
         message: 'This value is not valid',
@@ -141,6 +145,10 @@
                 validators:{
                     notEmpty: {
                         message: '验证码不能为空'
+                    },
+                    remote: {
+                        url:'checkCode',
+                        message:'验证码错误'
                     }
                 }
             }
