@@ -50,7 +50,7 @@
             data:$("#searchForm").serialize(),
             dataType:"json",    //数据类型为json格式
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
-            success(data,textStatus){
+            success(data){
                 console.log(data)
             }
         })

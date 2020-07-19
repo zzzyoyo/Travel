@@ -7,17 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dao/PictureDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/Picture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/servlet/SearchServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/ValidateServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/ValidateServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/jspFiles/navigation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/jspFiles/navigation.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/ValidateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/ValidateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/ValidateServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/ValidateServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jspFiles/navigation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jspFiles/navigation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +117,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -150,7 +140,7 @@
       <workItem from="1595039984002" duration="7775000" />
       <workItem from="1595083622536" duration="5320000" />
       <workItem from="1595125168555" duration="22825000" />
-      <workItem from="1595161375482" duration="9964000" />
+      <workItem from="1595161375482" duration="10261000" />
     </task>
     <servers />
   </component>
