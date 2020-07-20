@@ -10,24 +10,49 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
-@WebServlet(name = "SearchServlet",urlPatterns = {"/search"})
+@WebServlet(name = "SearchServlet",urlPatterns = {"*.search"})
 public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String methodName = request.getServletPath().substring(1,request.getServletPath().indexOf('.'));
+        try {
+            Method method = getClass().getDeclaredMethod(methodName,HttpServletRequest.class,HttpServletResponse.class);
+            method.invoke(this,request,response);
+        } catch (NoSuchMethodException e) {
+            System.out.println("no method: "+methodName);
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
+    }
+
+    private void getResult(HttpServletRequest request, HttpServletResponse response) throws IOException {
         JSONObject jsonObject = new JSONObject();
         String content = request.getParameter("content");
         String filter = request.getParameter("filter");
         String sort = request.getParameter("sort");
-        System.out.println("content:"+content);
+        int page = Integer.parseInt(request.getParameter("page"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         PictureDao pictureDao = new PictureDao();
-        List<Picture> pictures = pictureDao.getPicturesByFuzzyContent(content,filter,sort);
+        List<Picture> pictures = pictureDao.getPicturesByFuzzyContent(content,filter,sort,page,pageSize);
         jsonObject.put("pictures",pictures);
 //        System.out.println(pictures);
         response.getWriter().println(jsonObject);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+    private void getCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String content = request.getParameter("content");
+        String filter = request.getParameter("filter");
+        PictureDao pictureDao = new PictureDao();
+        response.getWriter().println(pictureDao.getCountWithFuzzyContent(content,filter));
     }
 }
