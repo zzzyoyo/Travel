@@ -25,7 +25,7 @@
     }
 %>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
-<jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 50%;margin: auto">
     <p class="help-block" style="color: red">${requestScope.message}</p>
     <form action="<%=request.getContextPath()%>/login" method="post">

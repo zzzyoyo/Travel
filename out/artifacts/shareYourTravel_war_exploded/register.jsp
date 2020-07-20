@@ -19,8 +19,8 @@
     <!-- bootstrapValidator -->
     <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
 </head>
-<body>
-<jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
+<body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
+<jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 70%;margin: auto">
     <form class="form-horizontal" action="${pageContext.request.contextPath}/register" method="post">
         <div class="form-group">

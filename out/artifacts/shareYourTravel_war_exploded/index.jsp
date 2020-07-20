@@ -20,7 +20,7 @@
 
   </head>
   <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
-  <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">

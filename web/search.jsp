@@ -18,7 +18,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
-<jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 50%;margin: auto">
     <p class="help-block" style="color: red">${requestScope.message}</p>
     <form id="searchForm">
@@ -154,7 +154,9 @@
         let h = '';
         pictures.forEach(function (pictureElement) {
             h += '<div class="picture">\n' +
-                '        <img src="resources/travel-images/square-medium/'+ pictureElement.path +'" alt="...">\n' +
+                '        <a href="details.jsp?imageID='+ pictureElement.id +'">' +
+                '               <img src="resources/travel-images/square-medium/'+ pictureElement.path +'" alt="...">' +
+                '        </a>\n' +
                 '        <h6><strong>'+ pictureElement.title +'</strong></h6>  <strong>author</strong>:'+ pictureElement.author +'\n' +
                 '    </div>'
         })

@@ -14,8 +14,14 @@ public class PictureDao extends Dao<Picture> {
         else{
             sql += "Content LIKE ? ";
         }
-        sql += "ORDER BY i.UID ";
-        sql += "LIMIT ?,?";
+        sql += "ORDER BY ";
+        if(sort.equals("hot")){
+            sql += "Hot ";
+        }
+        else {
+            sql += "RecentUpdate ";
+        }
+        sql += "DESC LIMIT ?,?";
 //        System.out.println(sql);
         List<Picture> pictures = getAll(sql,"%"+content+"%",(page - 1)*pageSize,pageSize);
 //        System.out.println(pictures);
