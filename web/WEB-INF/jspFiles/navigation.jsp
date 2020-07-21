@@ -26,7 +26,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
+                    <li><a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
                     <li><a href="${pageContext.request.contextPath}/search.jsp"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</a></li>
                     <c:choose>
                         <c:when test='<%=user!=null%>'>
@@ -37,7 +37,7 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>我的收藏</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/collection.jsp"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>我的收藏</a></li>
                                     <li><a href="#"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span>上传图片</a></li>
                                     <li><a href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>我的图片</a></li>
                                     <li><a href="#"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>我的好友</a></li>

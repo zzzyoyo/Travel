@@ -49,4 +49,12 @@ public class PictureDao extends Dao<Picture> {
 //        System.out.println(sort+":"+pictures);
         return pictures;
     }
+
+    public List<Picture> getCollectionsByUid(int uid){
+        String sql = "SELECT i.ImageID id, i.Title title, i.PATH path, u.UserName author  FROM travelimage i," +
+                "travelimagefavor f, traveluser u WHERE f.UID = ? AND f.ImageID = i.ImageID AND u.UID = i.UID";
+        List<Picture> pictures = getAll(sql,uid);
+        System.out.println("collections:"+pictures);
+        return pictures;
+    }
 }
