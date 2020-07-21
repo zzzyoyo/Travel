@@ -40,6 +40,10 @@
     <div class="information">
         <table>
             <tr>
+                <th>标题</th>
+                <th><%=detailedPicture.getTitle()%></th>
+            </tr>
+            <tr>
                 <th>作者</th>
                 <th><%=detailedPicture.getAuthor()%></th>
             </tr>
@@ -67,7 +71,6 @@
         <button type="button" class="btn btn-primary" style="float: right">收藏</button>
     </div>
     <div class="image" id="image">
-        <h2 style="margin-left: 592px"><%=detailedPicture.getTitle()%></h2>
         <div class="small" onmousemove="scale_up()" onmouseout="out()" id="small">
             <img src="${pageContext.request.contextPath}/resources/travel-images/large/<%=detailedPicture.getPath()%>" >
             <p id="description"><strong>简介：</strong><%=detailedPicture.getDescription()%></p>
@@ -135,7 +138,6 @@
         float: right;
         border-radius: 20px;
         padding: 0 10px 10px 10px;
-        margin: 40px 20px;
     }
     .information tr:nth-child(odd){
         background-color: cadetblue;
@@ -179,9 +181,8 @@
         width: 400px;
         height: 400px;
         position: absolute;
-        top: 100px;
-        left: 160px;
-        background-color: black;
+        top: 70px;
+        left: 100px;
         overflow: hidden;
         border: solid 5px black;
         background-color: white;

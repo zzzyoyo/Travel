@@ -1,4 +1,7 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="dao.PictureDao" %>
+<%@ page import="domain.Picture" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/18
@@ -21,34 +24,40 @@
   </head>
   <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
   <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
+  <%
+    PictureDao pictureDao = new PictureDao();
+    List<Picture> hottest = pictureDao.getSortedPictures(5,"hot");
+    List<Picture> recent = pictureDao.getSortedPictures(5,"RecentUpdate");
+  %>
+  <!--最热图片-->
+  <h2>最热图片<span class="glyphicon glyphicon-certificate" aria-hidden="true"></span></h2>
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      <c:forEach var="i" begin="1" end="<%=hottest.size()-1%>">
+        <li data-target="#carousel-example-generic" data-slide-to="${i}"></li>
+      </c:forEach>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="${pageContext.request.contextPath}/resources/image/demo.PNG" alt="...">
+        <a href="details.jsp?imageID=<%=hottest.get(0).getId()%>"><img src="${pageContext.request.contextPath}/resources/travel-images/large/<%=hottest.get(0).getPath()%>" alt="..." style="height: 500px;margin: auto"></a>
         <div class="carousel-caption">
-          aaa
+          <h3><%=hottest.get(0).getTitle()%></h3>
+          <span class="glyphicon glyphicon-camera" aria-hidden="true"></span><%=hottest.get(0).getAuthor()%>
         </div>
       </div>
-      <div class="item">
-        <img src="${pageContext.request.contextPath}/resources/image/demo.PNG" alt="...">
-        <div class="carousel-caption">
-          aaa
+      <c:forEach var="picture" items="<%=hottest%>" begin="1">
+        <div class="item">
+          <a href="details.jsp?imageID=${picture.getId()}"><img src="${pageContext.request.contextPath}/resources/travel-images/large/${picture.getPath()}" alt="..." style="height: 500px;margin: auto"></a>
+          <div class="carousel-caption">
+            <h3>${picture.getTitle()}</h3>
+            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>${picture.getAuthor()}
+          </div>
         </div>
-      </div>
-      <div class="item">
-        <img src="${pageContext.request.contextPath}/resources/image/demo.PNG" alt="...">
-        <div class="carousel-caption">
-          aaa
-        </div>
-      </div>
+      </c:forEach>
     </div>
 
     <!-- Controls -->
@@ -61,9 +70,81 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+
+  <!--最新-->
+  <fieldset class="hot-works">
+    <legend>hot-works</legend>
+    <div class="wrap">
+      <div class="my_container">
+        <c:forEach var="picture" items="<%=recent%>">
+          <div class="holder">
+            <a href="details.jsp?imageID=${picture.getId()}"><img src="${pageContext.request.contextPath}/resources/travel-images/medium/${picture.getPath()}"> </a>
+            <ul>
+              <li class="work">Three Musicians</li>
+              <li class="artist">by Pablo Picasso</li>
+            </ul>
+          </div>
+        </c:forEach>
+      </div>
+    </div>
+  </fieldset>
   <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
   <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    .wrap {
+      position: relative;
+      height: 500px;
+      margin: 100px auto;
+      overflow: hidden;
+      padding: 2px;
+      margin: 0;
+    }
+    .my_container{
+      position: absolute;
+      left: 0; top: 0;
+      width: 300%;
+      height: 100%;
+      transform: translate(0,0);
+      animation: loop 30s linear infinite alternate;
+    }
+    .my_container:hover{
+      animation-play-state: paused;
+    }
+    .holder{
+       display: inline-block;
+       position: relative;
+     }
+    @keyframes loop {
+      0% {transform: translate(0,0);}
+      100% {transform: translate(-33%,0);}
+    }
+    .hot-works ul{
+      color: white;
+      vertical-align: middle;
+      text-align: left;
+      position: absolute;
+      top: 35%;
+      left: 25%;
+      font-family: Lemon;
+      opacity: 0;
+      width: 100%;
+    }
+    .hot-works ul:hover{
+      opacity: 1;
+    }
+    .hot-works ul li{
+      padding: 10px;
+    }
+    .hot-works ul li.work{
+      font-size: 30px;
+    }
+    .hot-works ul li.artist{
+      font-size:20px;
+      font-style: italic;
+    }
+  </style>
   </body>
 </html>

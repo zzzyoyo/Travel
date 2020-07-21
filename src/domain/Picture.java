@@ -37,4 +37,14 @@ public class Picture {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Picture{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", path='" + path + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

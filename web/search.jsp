@@ -32,7 +32,7 @@
             <input type="radio" name="filter" value="theme">主题
             <strong style="margin-left: 30px">排序方式：</strong>
             <input type="radio" name="sort" value="hot" checked="checked">热度
-            <input type="radio" name="sort" value="time">时间
+            <input type="radio" name="sort" value="recentUpdate">时间
         </div>
     </form>
 </div>

@@ -16,10 +16,10 @@ public class PictureDao extends Dao<Picture> {
         }
         sql += "ORDER BY ";
         if(sort.equals("hot")){
-            sql += "Hot ";
+            sql += "i.Hot ";
         }
         else {
-            sql += "RecentUpdate ";
+            sql += "i.RecentUpdate ";
         }
         sql += "DESC LIMIT ?,?";
 //        System.out.println(sql);
@@ -40,5 +40,13 @@ public class PictureDao extends Dao<Picture> {
         long count = getForValues(sql,"%"+content+"%");
         System.out.println(count);
         return count;
+    }
+
+    public List<Picture> getSortedPictures(int number,String sort){
+        String sql = "SELECT i.ImageID id, i.Title title, i.PATH path, u.UserName author FROM travelimage i, "+
+                "traveluser u WHERE i.UID = u.UID ORDER BY "+ sort+" DESC LIMIT 0,?";
+        List<Picture> pictures = getAll(sql,number);
+        System.out.println(sort+":"+pictures);
+        return pictures;
     }
 }
