@@ -38,7 +38,7 @@
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password" required>
         </div>
         <button type="submit" class="btn btn-default">登录</button>
-        <a href="register.jsp"><p class="help-block">没有注册？点击此处注册<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></p></a>
+        <a href="${pageContext.request.contextPath}/register.jsp"><p class="help-block">没有注册？点击此处注册<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></p></a>
     </form>
 </div>
 

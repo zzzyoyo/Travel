@@ -42,12 +42,12 @@
                                     <li><a href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>我的图片</a></li>
                                     <li><a href="#"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>我的好友</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>退出登录</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>退出登录</a></li>
                                 </ul>
                             </li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>未登录</a></li>
+                            <li><a href="${pageContext.request.contextPath}/login.jsp"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>未登录</a></li>
                         </c:otherwise>
                     </c:choose>
                 </ul>

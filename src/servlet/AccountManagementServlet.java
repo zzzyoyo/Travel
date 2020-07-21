@@ -6,10 +6,7 @@ import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -50,6 +47,10 @@ public class AccountManagementServlet extends HttpServlet {
             session.setAttribute("userDetails",user);
             String toPath = (String) session.getAttribute("toPath");
             session.removeAttribute("toPath");
+            //持久化session
+            Cookie cookie = new Cookie("JSESSIONID",session.getId());
+            cookie.setMaxAge(60*30);//30min
+            response.addCookie(cookie);
             response.sendRedirect(toPath == null?request.getContextPath():toPath);
         }
         else {
