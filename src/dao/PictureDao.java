@@ -36,9 +36,9 @@ public class PictureDao extends Dao<Picture> {
         else{
             sql += "Content LIKE ? ";
         }
-        System.out.println(sql);
+//        System.out.println(sql);
         long count = getForValues(sql,"%"+content+"%");
-        System.out.println(count);
+//        System.out.println(count);
         return count;
     }
 
@@ -46,7 +46,7 @@ public class PictureDao extends Dao<Picture> {
         String sql = "SELECT i.ImageID id, i.Title title, i.PATH path, u.UserName author FROM travelimage i, "+
                 "traveluser u WHERE i.UID = u.UID ORDER BY "+ sort+" DESC LIMIT 0,?";
         List<Picture> pictures = getAll(sql,number);
-        System.out.println(sort+":"+pictures);
+//        System.out.println(sort+":"+pictures);
         return pictures;
     }
 }
