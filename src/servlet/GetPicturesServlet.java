@@ -51,7 +51,7 @@ public class GetPicturesServlet extends HttpServlet {
     private void collectionCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int uid = Integer.parseInt(request.getParameter("uid"));
         PictureDao pictureDao = new PictureDao();
-        response.getWriter().println(pictureDao.getCountWithUid(uid));
+        response.getWriter().println(pictureDao.getCollectionCountWithUid(uid));
     }
 
     private void searchResultCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -70,6 +70,24 @@ public class GetPicturesServlet extends HttpServlet {
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         PictureDao pictureDao = new PictureDao();
         List<Picture> pictures = pictureDao.getPicturesByFuzzyContent(content,filter,sort,page,pageSize);
+        jsonObject.put("pictures",pictures);
+//        System.out.println(pictures);
+        response.getWriter().println(jsonObject);
+    }
+
+    private void photoCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int uid = Integer.parseInt(request.getParameter("uid"));
+        PictureDao pictureDao = new PictureDao();
+        response.getWriter().println(pictureDao.getPhotoCountWithUid(uid));
+    }
+
+    private void photos(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        JSONObject jsonObject = new JSONObject();
+        int page = Integer.parseInt(request.getParameter("page"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        int uid = Integer.parseInt(request.getParameter("uid"));
+        PictureDao pictureDao = new PictureDao();
+        List<Picture> pictures = pictureDao.getPhotosByUid(uid,page,pageSize);
         jsonObject.put("pictures",pictures);
 //        System.out.println(pictures);
         response.getWriter().println(jsonObject);

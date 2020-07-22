@@ -64,8 +64,22 @@ public class PictureDao extends Dao<Picture> {
         return pictures;
     }
 
-    public long getCountWithUid(int uid){
+    public long getCollectionCountWithUid(int uid){
         String sql = "SELECT count(*) FROM travelimagefavor WHERE UID = ?";
+        long count = getForValues(sql,uid);
+        return count;
+    }
+
+    public List<Picture> getPhotosByUid(int uid,int page, int pageSize){
+        String sql = "SELECT i.ImageID id, i.Title title, i.PATH path, u.UserName author  FROM travelimage i," +
+                " traveluser u WHERE i.UID = ? AND u.UID = i.UID LIMIT ?,?";
+        List<Picture> pictures = getAll(sql,uid,(page - 1)*pageSize,pageSize);
+//        System.out.println("collections:"+pictures);
+        return pictures;
+    }
+
+    public long getPhotoCountWithUid(int uid){
+        String sql = "SELECT count(*) FROM travelimage WHERE UID = ?";
         long count = getForValues(sql,uid);
         return count;
     }

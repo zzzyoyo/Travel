@@ -7,29 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/resources/js/pagination.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/photos.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/PictureDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/PictureDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/DrawRandomImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/DrawRandomImageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/service/PictureService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/GetPicturesServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/GetPicturesServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/SearchServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/jspFiles/error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/jspFiles/error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/collection.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/search.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/PictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/PictureDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functionPackage/Require.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/functionPackage/Require.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/DrawRandomImageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/DrawRandomImageServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/PictureService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/servlet/GetPicturesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/GetPicturesServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/SearchServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/ValidateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/ValidateServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/dao/PictureDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/dao/PictureDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/DrawRandomImageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/DrawRandomImageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/service/PictureService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/GetPicturesServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/GetPicturesServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/SearchServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jspFiles/error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jspFiles/error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/collection.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,9 +43,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -173,7 +163,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -201,7 +191,7 @@
       <workItem from="1595226013810" duration="16456000" />
       <workItem from="1595253156443" duration="10053000" />
       <workItem from="1595295871223" duration="22118000" />
-      <workItem from="1595385262116" duration="6258000" />
+      <workItem from="1595385262116" duration="9993000" />
     </task>
     <servers />
   </component>

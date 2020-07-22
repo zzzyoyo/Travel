@@ -73,7 +73,7 @@
     <div class="image" id="image">
         <div class="small" onmousemove="scale_up()" onmouseout="out()" id="small">
             <img src="${pageContext.request.contextPath}/resources/travel-images/large/<%=detailedPicture.getPath()%>" >
-            <p id="description"><strong>简介：</strong><%=detailedPicture.getDescription()%></p>
+            <p id="description"><strong>简介：</strong><%=detailedPicture.getDescription()==null?"作者暂时没有添加简介~":detailedPicture.getDescription()%></p>
             <div class="mask" id="mask"></div>
         </div>
     </div>
