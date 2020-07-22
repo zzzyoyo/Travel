@@ -10,6 +10,7 @@
 <head>
 </head>
 <body>
+<!-- 此处的 message 是放在request的param里面的，即？后面的参数，不是attribute-->
 <p style="color: red">错误信息：${param.message}</p>
 </body>
 </html>

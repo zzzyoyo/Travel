@@ -37,6 +37,7 @@ public class AccountManagementServlet extends HttpServlet {
         String password = request.getParameter("password");
         if(!Require.requireStringNotEmpty(emailOrName,password)){
             request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
         }
         UserDao userDao = new UserDao();
         String queryPassword = userDao.getPasswordByNameOrEmail(emailOrName);
@@ -65,6 +66,7 @@ public class AccountManagementServlet extends HttpServlet {
         String email = request.getParameter("email");
         if(!Require.requireStringNotEmpty(username,password,email)){
             request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
         }
         UserDao userDao = new UserDao();
         User user = new User(username,password,email);

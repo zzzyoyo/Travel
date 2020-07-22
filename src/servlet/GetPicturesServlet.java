@@ -3,6 +3,7 @@ package servlet;
 import com.alibaba.fastjson.JSONObject;
 import dao.PictureDao;
 import domain.Picture;
+import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,24 +33,45 @@ public class GetPicturesServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message=Do not support get method").forward(request,response);
     }
 
     private void collections(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        System.out.println("commections");
         JSONObject jsonObject = new JSONObject();
         int page = Integer.parseInt(request.getParameter("page"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         int uid = Integer.parseInt(request.getParameter("uid"));
         PictureDao pictureDao = new PictureDao();
-        List<Picture> pictures = pictureDao.getCollectionsByUid(uid);
+        List<Picture> pictures = pictureDao.getCollectionsByUid(uid,page,pageSize);
         jsonObject.put("pictures",pictures);
 //        System.out.println(pictures);
         response.getWriter().println(jsonObject);
     }
 
     private void collectionCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("collectioncount");
-        response.getWriter().println(2);
+        int uid = Integer.parseInt(request.getParameter("uid"));
+        PictureDao pictureDao = new PictureDao();
+        response.getWriter().println(pictureDao.getCountWithUid(uid));
+    }
+
+    private void searchResultCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String content = request.getParameter("content");
+        String filter = request.getParameter("filter");
+        PictureDao pictureDao = new PictureDao();
+        response.getWriter().println(pictureDao.getCountWithFuzzyContent(content,filter));
+    }
+
+    private void searchResults(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        JSONObject jsonObject = new JSONObject();
+        String content = request.getParameter("content");
+        String filter = request.getParameter("filter");
+        String sort = request.getParameter("sort");
+        int page = Integer.parseInt(request.getParameter("page"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        PictureDao pictureDao = new PictureDao();
+        List<Picture> pictures = pictureDao.getPicturesByFuzzyContent(content,filter,sort,page,pageSize);
+        jsonObject.put("pictures",pictures);
+//        System.out.println(pictures);
+        response.getWriter().println(jsonObject);
     }
 }

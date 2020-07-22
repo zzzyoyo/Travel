@@ -42,6 +42,12 @@ public class PictureDao extends Dao<Picture> {
         return count;
     }
 
+    /**
+     * 从第一个开始的number张图片
+     * @param number
+     * @param sort
+     * @return
+     */
     public List<Picture> getSortedPictures(int number,String sort){
         String sql = "SELECT i.ImageID id, i.Title title, i.PATH path, u.UserName author FROM travelimage i, "+
                 "traveluser u WHERE i.UID = u.UID ORDER BY "+ sort+" DESC LIMIT 0,?";
@@ -50,11 +56,17 @@ public class PictureDao extends Dao<Picture> {
         return pictures;
     }
 
-    public List<Picture> getCollectionsByUid(int uid){
+    public List<Picture> getCollectionsByUid(int uid,int page, int pageSize){
         String sql = "SELECT i.ImageID id, i.Title title, i.PATH path, u.UserName author  FROM travelimage i," +
-                "travelimagefavor f, traveluser u WHERE f.UID = ? AND f.ImageID = i.ImageID AND u.UID = i.UID";
-        List<Picture> pictures = getAll(sql,uid);
-        System.out.println("collections:"+pictures);
+                "travelimagefavor f, traveluser u WHERE f.UID = ? AND f.ImageID = i.ImageID AND u.UID = i.UID LIMIT ?,?";
+        List<Picture> pictures = getAll(sql,uid,(page - 1)*pageSize,pageSize);
+//        System.out.println("collections:"+pictures);
         return pictures;
+    }
+
+    public long getCountWithUid(int uid){
+        String sql = "SELECT count(*) FROM travelimagefavor WHERE UID = ?";
+        long count = getForValues(sql,uid);
+        return count;
     }
 }
