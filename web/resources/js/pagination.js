@@ -117,6 +117,11 @@ function displayPictures(pictures) {
             //collections
             h += '<button type="button" class="btn btn-primary btn-sm myButton" onclick="cancelCollection('+ pictureElement.id +')">★取消收藏</button>\n'
         }
+        else if(requestURL.indexOf('photos') != -1){
+            //photos
+            h += '<button type="button" class="btn btn-success btn-sm deleteButton" onclick="deletePhoto('+ pictureElement.id +')">删除</button>\n';
+            h += '<button type="button" class="btn btn-warning btn-sm updateButton" onclick="updatePhoto('+ pictureElement.id +')">修改</button>\n';
+        }
         h +=' </div>'
     })
     $('#results').html(h);

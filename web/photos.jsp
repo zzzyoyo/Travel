@@ -27,7 +27,7 @@
     User user = (User)session.getAttribute("userDetails");
 %>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
-<h2>我的照片</h2>
+<h2 style="text-align: center;color: darkred;">我的照片</h2>
 <div id="results" class="row" style="width: 90%;margin: auto">
     <!-- 展示 -->
 </div>
@@ -48,7 +48,14 @@
 <script>
     firstPage('${pageContext.request.contextPath}/photoCount.get','${pageContext.request.contextPath}/photos.get','uid=<%=user.getUid()%>')
 </script>
-
+<script>
+    function deletePhoto(imageId) {
+        alert('delete'+imageId);
+    }
+    function updatePhoto(imageId) {
+        alert('update'+imageId);
+    }
+</script>
 <style type="text/css">
     .picture{
         float: left;
@@ -58,7 +65,18 @@
         background-color: #fff;
         border-radius: 4px;
         width: 160px;
-        height: 220px;
+        height: 260px;
+        position: relative;
+    }
+    .deleteButton{
+        position: absolute;
+        bottom: 1px;
+        right: 20px;
+    }
+    .updateButton{
+        position: absolute;
+        bottom: 1px;
+        left: 20px;
     }
 </style>
 </body>

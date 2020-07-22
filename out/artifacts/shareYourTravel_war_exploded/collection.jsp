@@ -31,7 +31,7 @@
     User user = (User)session.getAttribute("userDetails");
 %>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
-<h2>我的收藏</h2>
+<h2 style="text-align: center;color: cornflowerblue;">我的收藏</h2>
 <div id="results" class="row" style="width: 90%;margin: auto">
     <!-- 收藏展示 -->
 </div>

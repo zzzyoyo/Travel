@@ -7,15 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dao/FavorDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DetailedPictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DetailedPictureDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/CollectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/CollectionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/collection.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/jspFiles/navigation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jspFiles/navigation.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/photos.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/resources/js/pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/resources/js/pagination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/search.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +183,7 @@
       <workItem from="1595253156443" duration="10053000" />
       <workItem from="1595295871223" duration="22118000" />
       <workItem from="1595385262116" duration="16694000" />
-      <workItem from="1595422141936" duration="10545000" />
+      <workItem from="1595422141936" duration="12086000" />
     </task>
     <servers />
   </component>
