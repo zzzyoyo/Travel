@@ -3,7 +3,8 @@ let pageCount;//页面数
 let count;//图片总数
 let requestURL;//要请求的url，如searchResults, collections, photos
 let requestData;//查询条件
-const pageSize = 10;//一页展示多少图片
+let currentPage;//当前页码
+const pageSize = 8;//一页展示多少图片
 const paginationSize = 10;//分页条最多有多少个页码
 
 //请求第一页时先获取总的结果数，之后就不用查找所有结果再筛选，而是直接根据page进行sql查找
@@ -24,6 +25,7 @@ function firstPage(countURL,picturesURL,data) {
 
 //display one page
 function display(currPage) {
+    currentPage = currPage;
     //display page navigation
     pagination(currPage);
     //get results and display
@@ -95,7 +97,7 @@ function resultOfPage(page) {
         success(data){
             console.log("search success")
             if(data.hasOwnProperty("pictures")){
-                console.log(data.pictures)
+                // console.log(data.pictures)
                 displayPictures(data.pictures)
             }
         }
@@ -106,12 +108,16 @@ function resultOfPage(page) {
 function displayPictures(pictures) {
     let h = '';
     pictures.forEach(function (pictureElement) {
-        h += '<div class="picture">\n' +
-            '        <a href="details.jsp?imageID='+ pictureElement.id +'">' +
+        h +='<div class="picture">\n'
+        h +='        <a href="details.jsp?imageID='+ pictureElement.id +'">' +
             '               <img src="resources/travel-images/square-medium/'+ pictureElement.path +'" alt="...">' +
-            '        </a>\n' +
-            '        <h6><strong>'+ pictureElement.title +'</strong></h6>  <strong>author</strong>:'+ pictureElement.author +'\n' +
-            '    </div>'
+            '        </a>\n'
+        h +='        <h6><strong>'+ pictureElement.title +'</strong></h6>  <strong>author</strong>:'+ pictureElement.author +'\n'
+        if(requestURL.indexOf('collections') != -1){
+            //collections
+            h += '<button type="button" class="btn btn-primary btn-sm myButton" onclick="cancelCollection('+ pictureElement.id +')">★取消收藏</button>\n'
+        }
+        h +=' </div>'
     })
     $('#results').html(h);
 }

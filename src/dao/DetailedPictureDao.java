@@ -13,11 +13,4 @@ public class DetailedPictureDao extends Dao<DetailedPicture> {
         DetailedPicture detailedPicture = get(sql,id);
         return detailedPicture;
     }
-
-    public boolean isCollected(int uid, int imageID){
-        String sql = "SELECT count(*) FROM travelimagefavor WHERE UID = ? AND ImageID = ?";
-        long count = getForValues(sql,uid,imageID);
-        if(count > 0) return true;
-        else return false;
-    }
 }

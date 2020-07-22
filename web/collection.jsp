@@ -31,7 +31,7 @@
     User user = (User)session.getAttribute("userDetails");
 %>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
-<h2>我的收藏</h2>
+<h2 style="text-align: center;color: cornflowerblue;">我的收藏</h2>
 <div id="results" class="row" style="width: 90%;margin: auto">
     <!-- 收藏展示 -->
 </div>
@@ -52,14 +52,42 @@
 <script>
     firstPage('${pageContext.request.contextPath}/collectionCount.get','${pageContext.request.contextPath}/collections.get','uid=<%=user.getUid()%>')
 </script>
+<script>
+    function cancelCollection(imageID){
+        $.ajax({
+            url:'${pageContext.request.contextPath}/delete.collect',
+            type:'POST',
+            data:{
+                'imageID':imageID,
+                'uid':<%=user.getUid()%>
+            },
+            success(data){
+                if(data.indexOf('success') !== -1){
+                    count --;
+                    pageCount = Math.ceil(count/pageSize);
+                    display(currentPage)
+                }
+                console.log(data);
+            }
+        })
+    }
+</script>
 <style type="text/css">
     .picture{
         float: left;
-        margin: 30px;
+        margin: 60px;
         padding: 4px;
         border: 1px solid #ddd;
         background-color: #fff;
-        border-radius: 4px
+        border-radius: 4px;
+        width: 160px;
+        height: 260px;
+        position: relative;
+    }
+    .myButton{
+        position: absolute;
+        bottom: 1px;
+        right: 40px;
     }
 </style>
 </body>

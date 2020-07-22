@@ -61,11 +61,13 @@
 <style type="text/css">
     .picture{
         float: left;
-        margin: 30px;
+        margin: 60px;
         padding: 4px;
         border: 1px solid #ddd;
         background-color: #fff;
-        border-radius: 4px
+        border-radius: 4px;
+        width: 160px;
+        height: 220px;
     }
 </style>
 </body>

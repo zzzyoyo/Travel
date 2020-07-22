@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="dao.DetailedPictureDao" %>
 <%@ page import="domain.DetailedPicture" %>
-<%@ page import="domain.User" %><%--
+<%@ page import="domain.User" %>
+<%@ page import="dao.FavorDao" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/20
@@ -32,7 +33,8 @@
         id = Integer.parseInt(request.getParameter("imageID"));
         DetailedPictureDao detailedPictureDao = new DetailedPictureDao();
         detailedPicture = detailedPictureDao.getDetailedPictureByID(id);
-        isCollected = isLogin && detailedPictureDao.isCollected(user.getUid(),id);
+        FavorDao favorDao = new FavorDao();
+        isCollected = isLogin && favorDao.isCollected(user.getUid(),id);
     } catch (NumberFormatException e) {
         e.printStackTrace();
         request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message=invalid imageID").forward(request,response);
@@ -44,7 +46,7 @@
 </c:if>
 <c:if test="<%=detailedPicture != null%>">
     <div class="information">
-        <table>
+        <table style="word-break: break-word">
             <tr>
                 <th>标题</th>
                 <th><%=detailedPicture.getTitle()%></th>
@@ -77,18 +79,18 @@
         <c:if test="<%=isLogin%>">
             <c:choose>
                 <c:when test="<%=isCollected%>">
-                    <button type="button" class="btn btn-primary myButton" onclick="cancelCollect(<%=id%>)" id="cancelButton">
+                    <button type="button" class="btn btn-primary myButton" onclick="cancelCollect()" id="cancelButton">
                         ★取消收藏
                     </button>
-                    <button type="button" class="btn btn-info myButton" onclick="collect(<%=id%>)" id="collectButton" style="display: none">
+                    <button type="button" class="btn btn-info myButton" onclick="collect()" id="collectButton" style="display: none">
                         ☆收藏
                     </button>
                 </c:when>
                 <c:otherwise>
-                    <button type="button" class="btn btn-info myButton" onclick="collect(<%=id%>)" id="collectButton">
+                    <button type="button" class="btn btn-info myButton" onclick="collect()" id="collectButton">
                         ☆收藏
                     </button>
-                    <button type="button" class="btn btn-primary myButton" onclick="cancelCollect(<%=id%>)" id="cancelButton" style="display: none">
+                    <button type="button" class="btn btn-primary myButton" onclick="cancelCollect()" id="cancelButton" style="display: none">
                         ★取消收藏
                     </button>
                 </c:otherwise>
@@ -112,15 +114,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
 <script>
-    function collect(imageID) {
+    function collect() {
         $.ajax({
             url:'${pageContext.request.contextPath}/add.collect',
             type:'POST',
             data:{
-                'imageID':imageID
+                'imageID':<%=id%>,
+                'uid':<%=user.getUid()%>
             },
             success(data){
-                if(data == 'success'){
+                if(data.indexOf('success') !== -1){
                     $("#cancelButton").css('display','inline-block');
                     $("#collectButton").css('display','none');
                 }
@@ -128,15 +131,16 @@
             }
         })
     }
-    function cancelCollect(imageID) {
+    function cancelCollect() {
         $.ajax({
             url:'${pageContext.request.contextPath}/delete.collect',
             type:'POST',
             data:{
-                'imageID':imageID
+                'imageID':<%=id%>,
+                'uid':<%=user.getUid()%>
             },
             success(data){
-                if(data == 'success'){
+                if(data.indexOf('success') !== -1){
                     $("#cancelButton").css('display','none');
                     $("#collectButton").css('display','inline-block');
                 }

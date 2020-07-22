@@ -1,5 +1,7 @@
 package servlet;
 
+import dao.FavorDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,14 +31,22 @@ public class CollectionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= Do not support GET method").forward(request,response);
     }
 
     private void add(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("add");
+//        System.out.println("add");
+        int uid = Integer.parseInt(request.getParameter("uid"));
+        int imageID = Integer.parseInt(request.getParameter("imageID"));
+        FavorDao favorDao = new FavorDao();
+        favorDao.addCollection(uid,imageID);
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response){
-        System.out.println("delete");
+//        System.out.println("delete");
+        int uid = Integer.parseInt(request.getParameter("uid"));
+        int imageID = Integer.parseInt(request.getParameter("imageID"));
+        FavorDao favorDao = new FavorDao();
+        favorDao.deleteCollection(uid,imageID);
     }
 }
