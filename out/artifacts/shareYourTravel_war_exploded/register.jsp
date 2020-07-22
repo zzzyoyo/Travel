@@ -95,7 +95,7 @@
                         message: '用户名长度必须在4到15位之间'
                     },
                     remote: {   //后台验证，比如查询用户名是否存在
-                        url: 'usernameUsed',
+                        url: '${pageContext.request.contextPath}/usernameUsed.validate',
                         message: '此用户名已存在'
                     }
                 }
@@ -147,7 +147,7 @@
                         message: '验证码不能为空'
                     },
                     remote: {
-                        url:'checkCode',
+                        url:'${pageContext.request.contextPath}/checkCode.validate',
                         message:'验证码错误'
                     }
                 }

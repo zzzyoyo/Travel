@@ -9,28 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "ValidateServlet",urlPatterns = {"/usernameUsed","/checkCode"})
+@WebServlet(name = "ValidateServlet",urlPatterns = {"*.validate"})
 public class ValidateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("POST");
+        System.out.println(" validate POST!!");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        switch (request.getServletPath()){
-            case "/usernameUsed":{
-                usernameUsed(request,response);
-                break;
-            }
-            case "/checkCode":{
-                checkCode(request,response);
-                break;
-            }
-            default:{
-                break;
-            }
+        String methodName = request.getServletPath().substring(1,request.getServletPath().indexOf('.'));
+        try {
+            Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
+            method.invoke(this,request,response);
+        } catch (NoSuchMethodException e) {
+            System.out.println("no method: "+methodName);
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 

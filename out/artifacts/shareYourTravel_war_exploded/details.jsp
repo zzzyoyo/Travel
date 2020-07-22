@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="dao.DetailedPictureDao" %>
-<%@ page import="domain.DetailedPicture" %><%--
+<%@ page import="domain.DetailedPicture" %>
+<%@ page import="domain.User" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/20
@@ -23,10 +24,15 @@
 <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <%
     DetailedPicture detailedPicture = null;
+    User user = (User) session.getAttribute("userDetails");
+    boolean isLogin = (user != null);
+    boolean isCollected = false;
+    int id = 0;
     try {
-        int id = Integer.parseInt(request.getParameter("imageID"));
+        id = Integer.parseInt(request.getParameter("imageID"));
         DetailedPictureDao detailedPictureDao = new DetailedPictureDao();
         detailedPicture = detailedPictureDao.getDetailedPictureByID(id);
+        isCollected = isLogin && detailedPictureDao.isCollected(user.getUid(),id);
     } catch (NumberFormatException e) {
         e.printStackTrace();
         request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message=invalid imageID").forward(request,response);
@@ -68,7 +74,26 @@
                 <td><%=detailedPicture.getCity()%></td>
             </tr>
         </table>
-        <button type="button" class="btn btn-primary" style="float: right">收藏</button>
+        <c:if test="<%=isLogin%>">
+            <c:choose>
+                <c:when test="<%=isCollected%>">
+                    <button type="button" class="btn btn-primary myButton" onclick="cancelCollect(<%=id%>)" id="cancelButton">
+                        ★取消收藏
+                    </button>
+                    <button type="button" class="btn btn-info myButton" onclick="collect(<%=id%>)" id="collectButton" style="display: none">
+                        ☆收藏
+                    </button>
+                </c:when>
+                <c:otherwise>
+                    <button type="button" class="btn btn-info myButton" onclick="collect(<%=id%>)" id="collectButton">
+                        ☆收藏
+                    </button>
+                    <button type="button" class="btn btn-primary myButton" onclick="cancelCollect(<%=id%>)" id="cancelButton" style="display: none">
+                        ★取消收藏
+                    </button>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
     </div>
     <div class="image" id="image">
         <div class="small" onmousemove="scale_up()" onmouseout="out()" id="small">
@@ -87,6 +112,39 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
 <script>
+    function collect(imageID) {
+        $.ajax({
+            url:'${pageContext.request.contextPath}/add.collect',
+            type:'POST',
+            data:{
+                'imageID':imageID
+            },
+            success(data){
+                if(data == 'success'){
+                    $("#cancelButton").css('display','inline-block');
+                    $("#collectButton").css('display','none');
+                }
+                console.log(data);
+            }
+        })
+    }
+    function cancelCollect(imageID) {
+        $.ajax({
+            url:'${pageContext.request.contextPath}/delete.collect',
+            type:'POST',
+            data:{
+                'imageID':imageID
+            },
+            success(data){
+                if(data == 'success'){
+                    $("#cancelButton").css('display','none');
+                    $("#collectButton").css('display','inline-block');
+                }
+                console.log(data);
+            }
+        })
+    }
+
     function scale_up(){
         let mask = document.getElementById("mask");
         let big = document.getElementById("big");
@@ -200,6 +258,10 @@
         position: fixed;
         top: 300px;
         width: 245px;
+    }
+    .myButton{
+        float: right;
+        margin-top: 10px
     }
 </style>
 </body>

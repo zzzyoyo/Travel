@@ -3,7 +3,6 @@ package servlet;
 import com.alibaba.fastjson.JSONObject;
 import dao.PictureDao;
 import domain.Picture;
-import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +19,7 @@ public class GetPicturesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String methodName = request.getServletPath().substring(1,request.getServletPath().indexOf('.'));
         try {
-            Method method = getClass().getDeclaredMethod(methodName,HttpServletRequest.class,HttpServletResponse.class);
+            Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
             method.invoke(this,request,response);
         } catch (NoSuchMethodException e) {
             System.out.println("no method: "+methodName);
