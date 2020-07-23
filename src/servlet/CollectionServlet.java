@@ -18,7 +18,6 @@ public class CollectionServlet extends HttpServlet {
         try {
             Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
             method.invoke(this,request,response);
-            response.getWriter().println("success");
         } catch (NoSuchMethodException e) {
             response.getWriter().println("invalid method");
             System.out.println("no method: "+methodName);
@@ -34,19 +33,23 @@ public class CollectionServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= Do not support GET method").forward(request,response);
     }
 
-    private void add(HttpServletRequest request, HttpServletResponse response){
+    private void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        System.out.println("add");
         int uid = Integer.parseInt(request.getParameter("uid"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
         FavorDao favorDao = new FavorDao();
-        favorDao.addCollection(uid,imageID);
+        if(favorDao.addCollection(uid,imageID)){
+            response.getWriter().println("success");
+        }
     }
 
-    private void delete(HttpServletRequest request, HttpServletResponse response){
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        System.out.println("delete");
         int uid = Integer.parseInt(request.getParameter("uid"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
         FavorDao favorDao = new FavorDao();
-        favorDao.deleteCollection(uid,imageID);
+        if(favorDao.deleteCollection(uid,imageID)){
+            response.getWriter().println("success");
+        }
     }
 }

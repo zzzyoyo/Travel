@@ -55,7 +55,7 @@ public class AccountManagementServlet extends HttpServlet {
             response.sendRedirect(toPath == null?request.getContextPath():toPath);
         }
         else {
-            request.setAttribute("message","用户名/邮箱和密码错误");
+            request.setAttribute("message","用户名/邮箱和密码错误，请重试");
             request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
     }
@@ -70,12 +70,18 @@ public class AccountManagementServlet extends HttpServlet {
         }
         UserDao userDao = new UserDao();
         User user = new User(username,password,email);
-        userDao.save(user);
-        HttpSession session= request.getSession();
-        session.setAttribute("userDetails",user);
-        String toPath = (String) session.getAttribute("toPath");
-        session.removeAttribute("toPath");
-        response.sendRedirect(toPath == null?request.getContextPath():toPath);
+        if(userDao.save(user)){
+            //save user successfully
+            HttpSession session= request.getSession();
+            session.setAttribute("userDetails",user);
+            String toPath = (String) session.getAttribute("toPath");
+            session.removeAttribute("toPath");
+            response.sendRedirect(toPath == null?request.getContextPath():toPath);
+        }
+        else {
+            request.setAttribute("message","出现了一些错误，注册失败，请重试");
+            request.getRequestDispatcher("/register.jsp").forward(request,response);
+        }
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{

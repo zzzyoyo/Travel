@@ -27,7 +27,7 @@
     User user = (User)session.getAttribute("userDetails");
 %>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
-<h2>我的照片</h2>
+<h2 style="text-align: center;color: darkred;">我的照片</h2>
 <div id="results" class="row" style="width: 90%;margin: auto">
     <!-- 展示 -->
 </div>
@@ -51,6 +51,21 @@
 <script>
     function deletePhoto(imageId) {
         alert('delete'+imageId);
+        $.ajax({
+            url:'${pageContext.request.contextPath}/delete.update',
+            type:'POST',
+            data:{
+                'imageID':imageId
+            },
+            success(data){
+                if(data.indexOf('success') !== -1){
+                    count --;
+                    pageCount = Math.ceil(count/pageSize);
+                    display(currentPage)
+                }
+                console.log(data);
+            }
+        })
     }
     function updatePhoto(imageId) {
         alert('update'+imageId);

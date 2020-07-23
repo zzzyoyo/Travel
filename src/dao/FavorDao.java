@@ -26,7 +26,7 @@ public class FavorDao {
         else return false;
     }
 
-    public void addCollection(int uid, int imageID){
+    public boolean addCollection(int uid, int imageID){
 //        System.out.println("addCollection");
         Connection connection = null;
         try {
@@ -37,6 +37,7 @@ public class FavorDao {
             sql = "UPDATE travelimage SET Hot = Hot + 1 WHERE ImageID = ?";
             queryRunner.update(connection,sql,imageID);
             connection.commit();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             try {
@@ -44,12 +45,13 @@ public class FavorDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
+            return false;
         } finally {
             JdbcUtils.release(connection,null,null);
         }
     }
 
-    public void deleteCollection(int uid, int imageID){
+    public boolean deleteCollection(int uid, int imageID){
 //        System.out.println("deleteCollection");
         Connection connection = null;
         try {
@@ -62,6 +64,7 @@ public class FavorDao {
             sql = "UPDATE travelimage SET Hot = Hot - 1 WHERE ImageID = ?";
             queryRunner.update(connection,sql,imageID);
             connection.commit();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
             try {
@@ -69,6 +72,7 @@ public class FavorDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
+            return false;
         } finally {
             JdbcUtils.release(connection,null,null);
         }

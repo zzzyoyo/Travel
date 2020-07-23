@@ -44,13 +44,21 @@ public class Dao<T> {
         return null;
     }
 
-    public void update(String sql, Object ... args){
+    /**
+     *
+     * @param sql
+     * @param args
+     * @return true: success ,false:failure
+     */
+    public boolean update(String sql, Object ... args){
         Connection connection = null;
         try {
             connection = JdbcUtils.getConnection();
             queryRunner.update(connection,sql,args);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             JdbcUtils.release(connection,null,null);
         }

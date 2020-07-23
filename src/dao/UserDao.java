@@ -22,8 +22,8 @@ public class UserDao extends Dao<User>{
         return getForValues(sql,name);
     }
 
-    public void save(User user){
+    public boolean save(User user){
         String sql = "INSERT INTO traveluser (UserName, Email, Pass) VALUES (?,?,?)";
-        update(sql,user.getUsername(),user.getEmail(),user.getPassword());
+        return update(sql,user.getUsername(),user.getEmail(),user.getPassword());
     }
 }
