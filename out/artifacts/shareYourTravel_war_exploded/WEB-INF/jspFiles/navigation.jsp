@@ -38,7 +38,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a href="${pageContext.request.contextPath}/collection.jsp"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>我的收藏</a></li>
-                                    <li><a href="#"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span>上传图片</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/update.jsp"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span>上传图片</a></li>
                                     <li><a href="${pageContext.request.contextPath}/photos.jsp"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>我的图片</a></li>
                                     <li><a href="#"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>我的好友</a></li>
                                     <li role="separator" class="divider"></li>

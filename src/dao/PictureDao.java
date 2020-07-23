@@ -84,8 +84,9 @@ public class PictureDao extends Dao<Picture> {
         return count;
     }
 
-    public void deletePictureByImageID(int imageID){
+    public boolean deletePictureByImageID(int imageID){
         String sql = "DELETE FROM travelimage WHERE ImageID = ?";
-        update(sql,imageID);
+        return update(sql,imageID);
     }
+
 }
