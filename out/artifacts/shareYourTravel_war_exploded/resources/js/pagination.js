@@ -110,7 +110,7 @@ function displayPictures(pictures) {
     pictures.forEach(function (pictureElement) {
         h +='<div class="picture">\n'
         h +='        <a href="details.jsp?imageID='+ pictureElement.id +'">' +
-            '               <img src="resources/travel-images/square-medium/'+ pictureElement.path +'" alt="...">' +
+            '               <img src="resources/travel-images/square-medium/'+ pictureElement.path +'" alt="..." class="myImage">' +
             '        </a>\n'
         h +='        <h6><strong>'+ pictureElement.title +'</strong></h6>  <strong>author</strong>:'+ pictureElement.author +'\n'
         if(requestURL.indexOf('collections') != -1){

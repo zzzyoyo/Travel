@@ -1,19 +1,38 @@
 package servlet;
 
+import dao.DetailedPictureDao;
 import dao.FavorDao;
+import dao.PictureDao;
+import domain.DetailedPicture;
+import domain.Picture;
+import functionPackage.ReflectionUtils;
+import functionPackage.SavePicture;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "UpdatePictureServlet",urlPatterns = {"*.update"})
 public class UpdatePictureServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //中文乱码问题
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+
         String methodName = request.getServletPath().substring(1,request.getServletPath().indexOf('.'));
         try {
             Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
@@ -33,20 +52,65 @@ public class UpdatePictureServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= Do not support GET method").forward(request,response);
     }
 
-    private void add(HttpServletRequest request, HttpServletResponse response){
+    private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 //        System.out.println("add");
-        int uid = Integer.parseInt(request.getParameter("uid"));
-        int imageID = Integer.parseInt(request.getParameter("imageID"));
-        FavorDao favorDao = new FavorDao();
-        favorDao.addCollection(uid,imageID);
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        boolean isSaved = false;
+
+        factory.setSizeThreshold(1024 * 1024);
+        List<FileItem> items = null;
+
+        try {
+            items = upload.parseRequest(request);
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        }
+        Map<String, Object> values = new HashMap<>();
+        for(FileItem item:items){
+            if(!item.isFormField()){
+                //获得文件名
+                String fileName = item.getName();
+                values.put("path",fileName);
+                // 保存文件
+                isSaved = SavePicture.save(fileName,item.getInputStream());
+            }
+            else {
+                String fieldName = item.getFieldName();
+                Object value = item.getString();
+                value = new String( ((String)value).getBytes("ISO-8859-1"), "UTF-8");
+                if (fieldName.equals("cityId") || fieldName.equals("uid")) value = Integer.parseInt((String)value);
+                values.put(fieldName,value);
+            }
+        }
+
+        if(isSaved){
+            DetailedPicture detailedPicture = new DetailedPicture();
+            //若 Map 不为空集, 利用反射创建 clazz 对应的对象
+            if(values.size()>0){
+                for(Map.Entry<String, Object> entry: values.entrySet()){
+                    String fieldName = entry.getKey();
+                    Object value = entry.getValue();
+                    ReflectionUtils.setFieldValue(detailedPicture, fieldName, value);
+                }
+            }
+            System.out.println(detailedPicture.getDescription());
+            DetailedPictureDao detailedPictureDao = new DetailedPictureDao();
+            if(detailedPictureDao.savePicture(detailedPicture)){
+                request.getRequestDispatcher("/update.jsp?successMessage= Upload successfully").forward(request,response);
+            }
+            else {
+                request.getRequestDispatcher(request.getContextPath()+"/update.jsp?failureMessage= Fail to upload").forward(request,response);
+            }
+        }
+
     }
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        System.out.println("delete");
-        int uid = Integer.parseInt(request.getParameter("uid"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
-        FavorDao favorDao = new FavorDao();
-        if(favorDao.deleteCollection(uid,imageID)){
+        PictureDao pictureDao = new PictureDao();
+        if(pictureDao.deletePictureByImageID(imageID)){
             response.getWriter().println("success");
         }
     }

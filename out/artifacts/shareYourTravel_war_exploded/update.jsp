@@ -1,4 +1,5 @@
-<%--
+<%@ page import="functionPackage.Require" %>
+<%@ page import="domain.User" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/23
@@ -17,35 +18,46 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<%
+    //该页面需要登录
+    if(!Require.requireLogin(request.getContextPath()+"/update.jsp",session,response,request)) return;
+%>
+<%
+    User user = (User)session.getAttribute("userDetails");
+%>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
-<div style="width: 70%">
+<jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
+<p class="text-success" style="text-align: center">${param.successMessage}</p>
+<p class="text-danger">${param.failureMessage}</p>
+<div style="width: 30%;margin: auto">
     <h3>上传你的图片</h3>
-    <form>
+    <form action="${pageContext.request.contextPath}/add.update" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="uid" value="<%=user.getUid()%>">
         <div class="form-group">
             <label for="exampleInputTtile">标题</label>
-            <input type="text" class="form-control" id="exampleInputTtile" placeholder="Password">
+            <input type="text" class="form-control" id="exampleInputTtile" placeholder="Title" name="title">
         </div>
         <div class="form-group">
             <label for="exampleInputTheme">主题</label>
-            <input type="text" class="form-control" id="exampleInputTheme" placeholder="Password">
+            <input type="text" class="form-control" id="exampleInputTheme" placeholder="Theme" name="theme">
         </div>
         <div class="form-group">
             <label for="exampleInputDescription">简介</label>
-            <textarea class="form-control" id="exampleInputDescription" placeholder="Password" rows="3"></textarea>
+            <textarea class="form-control" id="exampleInputDescription" placeholder="Description" rows="3" name="description"></textarea>
         </div>
         <div class="form-group">
             <label for="countries">国家</label>
-            <select class="form-control" id="countries">
+            <select class="form-control" id="countries" name="countryISO">
             </select>
         </div>
         <div class="form-group">
             <label for="cities">城市</label>
-            <select class="form-control" id="cities">
+            <select class="form-control" id="cities" name="cityId">
             </select>
         </div>
         <div class="form-group">
-            <label for="exampleInputFile">File input</label>
-            <input type="file" id="exampleInputFile">
+            <label for="exampleInputFile">选择图片</label>
+            <input type="file" id="exampleInputFile" name="path">
             <p class="help-block">Example block-level help text here.</p>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>

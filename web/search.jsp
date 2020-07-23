@@ -69,6 +69,9 @@
         width: 160px;
         height: 220px;
     }
+    .myImage{
+        width: 150px;
+    }
 </style>
 </body>
 </html>

@@ -93,6 +93,9 @@
         bottom: 1px;
         left: 20px;
     }
+    .myImage{
+        width: 150px;
+    }
 </style>
 </body>
 </html>

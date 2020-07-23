@@ -14,6 +14,11 @@ import java.lang.reflect.Method;
 @WebServlet(name = "AccountManagementServlet",urlPatterns = {"/register","/login","/logout"})
 public class AccountManagementServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //中文乱码问题
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+
         String methodName = request.getServletPath().substring(1);
         try {
             Method method = getClass().getDeclaredMethod(methodName,HttpServletRequest.class,HttpServletResponse.class);

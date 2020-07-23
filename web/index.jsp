@@ -30,8 +30,8 @@
     List<Picture> recent = pictureDao.getSortedPictures(5,"RecentUpdate");
   %>
   <!--最热图片-->
-  <h2>最热图片<span class="glyphicon glyphicon-certificate" aria-hidden="true"></span></h2>
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <h2 style="color: #9F79EE;text-align: left;margin: 10px">最热图片</h2>
+  <div id="carousel-example-generic" class="carousel slide hot-works" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -71,14 +71,15 @@
     </a>
   </div>
 
+  <br><br>
   <!--最新-->
+  <h2 style="color: #9F79EE;text-align: right;margin: 10px">最新作品</h2>
   <fieldset class="hot-works">
-    <legend>hot-works</legend>
     <div class="wrap">
       <div class="my_container">
         <c:forEach var="picture" items="<%=recent%>">
           <div class="holder">
-            <a href="details.jsp?imageID=${picture.getId()}"><img src="${pageContext.request.contextPath}/resources/travel-images/medium/${picture.getPath()}"> </a>
+            <a href="details.jsp?imageID=${picture.getId()}"><img src="${pageContext.request.contextPath}/resources/travel-images/large/${picture.getPath()}"> </a>
             <ul>
               <li class="work">Three Musicians</li>
               <li class="artist">by Pablo Picasso</li>
@@ -88,12 +89,19 @@
       </div>
     </div>
   </fieldset>
+  <br><br>
   <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
   <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
   <style type="text/css">
+     .hot-works {
+      margin: 10px;
+      padding: 10px;
+      border: #DDA0DD ridge 10px;
+      vertical-align: top;
+    }
     .wrap {
       position: relative;
       height: 500px;
@@ -105,7 +113,7 @@
     .my_container{
       position: absolute;
       left: 0; top: 0;
-      width: 300%;
+      width: 250%;
       height: 100%;
       transform: translate(0,0);
       animation: loop 30s linear infinite alternate;
@@ -116,6 +124,9 @@
     .holder{
        display: inline-block;
        position: relative;
+      width: 450px;
+      height: 450px;
+      overflow: hidden;
      }
     @keyframes loop {
       0% {transform: translate(0,0);}

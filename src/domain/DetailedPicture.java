@@ -7,6 +7,34 @@ public class DetailedPicture extends Picture {
     private String country;
     private String updateTime;
     private int hot;
+    private String countryISO;
+    private int cityId;
+    private int uid;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public String getCountryISO() {
+        return countryISO;
+    }
+
+    public void setCountryISO(String countryISO) {
+        this.countryISO = countryISO;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
 
     public String getDescription() {
         return description;

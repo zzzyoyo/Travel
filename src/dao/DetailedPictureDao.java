@@ -10,7 +10,13 @@ public class DetailedPictureDao extends Dao<DetailedPicture> {
                 "FROM travelimage image, geocities cities, geocountries_regions countries, traveluser u " +
                 "WHERE image.ImageID = ? AND cities.GeoNameID = image.CityCode AND " +
                 "image.Country_RegionCodeISO = countries.ISO AND image.UID = u.UID";
-        DetailedPicture detailedPicture = get(sql,id);
-        return detailedPicture;
+        return get(sql,id);
+    }
+
+    public boolean savePicture(DetailedPicture detailedPicture){
+        String sql = "INSERT INTO travelimage (Title, Description, Content, CityCode, UID, Path, Country_RegionCodeISO)" +
+                " VALUES(?, ?, ?, ?, ?, ?, ?)";
+         return update(sql,detailedPicture.getTitle(),detailedPicture.getDescription(),detailedPicture.getTheme(),
+                detailedPicture.getCityId(), detailedPicture.getUid(),detailedPicture.getPath(),detailedPicture.getCountryISO());
     }
 }

@@ -89,6 +89,9 @@
         bottom: 1px;
         right: 40px;
     }
+    .myImage{
+        width: 150px;
+    }
 </style>
 </body>
 </html>

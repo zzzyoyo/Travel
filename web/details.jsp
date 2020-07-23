@@ -112,42 +112,46 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-
+<c:if test="<%=isLogin%>">
+    <script>
+        function collect() {
+            $.ajax({
+                url:'${pageContext.request.contextPath}/add.collect',
+                type:'POST',
+                data:{
+                    'imageID':<%=id%>,
+                    'uid':<%=user.getUid()%>
+                },
+                success(data){
+                    if(data.indexOf('success') !== -1){
+                        $("#cancelButton").css('display','inline-block');
+                        $("#collectButton").css('display','none');
+                    }
+                    console.log(data);
+                }
+            })
+        }
+        function cancelCollect() {
+            $.ajax({
+                url:'${pageContext.request.contextPath}/delete.collect',
+                type:'POST',
+                data:{
+                    'imageID':<%=id%>,
+                    'uid':<%=user.getUid()%>
+                },
+                success(data){
+                    if(data.indexOf('success') !== -1){
+                        $("#cancelButton").css('display','none');
+                        $("#collectButton").css('display','inline-block');
+                    }
+                    console.log(data);
+                }
+            })
+        }
+    </script>
+</c:if>
 <script>
-    function collect() {
-        $.ajax({
-            url:'${pageContext.request.contextPath}/add.collect',
-            type:'POST',
-            data:{
-                'imageID':<%=id%>,
-                'uid':<%=user.getUid()%>
-            },
-            success(data){
-                if(data.indexOf('success') !== -1){
-                    $("#cancelButton").css('display','inline-block');
-                    $("#collectButton").css('display','none');
-                }
-                console.log(data);
-            }
-        })
-    }
-    function cancelCollect() {
-        $.ajax({
-            url:'${pageContext.request.contextPath}/delete.collect',
-            type:'POST',
-            data:{
-                'imageID':<%=id%>,
-                'uid':<%=user.getUid()%>
-            },
-            success(data){
-                if(data.indexOf('success') !== -1){
-                    $("#cancelButton").css('display','none');
-                    $("#collectButton").css('display','inline-block');
-                }
-                console.log(data);
-            }
-        })
-    }
+
 
     function scale_up(){
         let mask = document.getElementById("mask");
@@ -200,6 +204,7 @@
         float: right;
         border-radius: 20px;
         padding: 0 10px 10px 10px;
+        width: 400px;
     }
     .information tr:nth-child(odd){
         background-color: cadetblue;
