@@ -30,6 +30,20 @@ public class PictureFileOperation {
     }
 
     public static boolean delete(String fileName){
+        for(int i = 0; i < paths.length; i++){
+            File file = new File(path+paths[i]+"\\"+fileName);
+            if (file.isFile() && file.exists()){
+                file.delete();
+            }
+            else {
+                System.out.println("no file or path is not file");
+                return false;
+            }
+        }
         return true;
     }
+//    public static void main(String args[]){
+//        System.out.println(delete("logo.PNG"));
+//    }
 }
+

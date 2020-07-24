@@ -136,14 +136,14 @@ public class UpdatePictureServlet extends HttpServlet {
         String oldFileName = null;
         for(FileItem item:items){
             if(!item.isFormField()){
-                System.out.println(item);
+//                System.out.println(item);
                 pictureItem = item;
             }
             else {
                 String fieldName = item.getFieldName();
                 String value = item.getString();
                 value = new String( value.getBytes("ISO-8859-1"), "UTF-8");
-                System.out.println(fieldName+value);
+//                System.out.println(fieldName+value);
                 if(fieldName.equals("oldFileName")){
                     oldFileName = value;
                 }
@@ -188,10 +188,9 @@ public class UpdatePictureServlet extends HttpServlet {
             DetailedPictureDao detailedPictureDao = new DetailedPictureDao();
             if(detailedPictureDao.setPicture(detailedPicture)){
                 request.getRequestDispatcher("/update.jsp?successMessage= Modify successfully").forward(request,response);
-            }
-            else {
-                request.getRequestDispatcher(request.getContextPath()+"/update.jsp?failureMessage= Fail to modify").forward(request,response);
+                return;
             }
         }
+        request.getRequestDispatcher(request.getContextPath()+"/update.jsp?failureMessage= Fail to modify").forward(request,response);
     }
 }

@@ -40,8 +40,8 @@ public class DetailedPictureDao extends Dao<DetailedPicture> {
 
     public boolean setPicture(DetailedPicture detailedPicture){
         String sql = "UPDATE travelimage SET Title=?,Description= ? , Content = ?, Country_RegionCodeISO = ?, " +
-                "CityCode = ? WHERE ImageID = ?";
+                "CityCode = ?, PATH = ?  WHERE ImageID = ?";
         return update(sql,detailedPicture.getTitle(),detailedPicture.getDescription(),detailedPicture.getTheme(),
-                detailedPicture.getCountryISO(),detailedPicture.getCityId(),detailedPicture.getId());
+                detailedPicture.getCountryISO(),detailedPicture.getCityId(),detailedPicture.getPath(),detailedPicture.getId());
     }
 }
