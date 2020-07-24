@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="dao.PictureDao" %>
 <%@ page import="domain.Picture" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="dao.DetailedPictureDao" %>
+<%@ page import="domain.DetailedPicture" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/18
@@ -27,7 +29,8 @@
   <%
     PictureDao pictureDao = new PictureDao();
     List<Picture> hottest = pictureDao.getSortedPictures(5,"hot");
-    List<Picture> recent = pictureDao.getSortedPictures(5,"RecentUpdate");
+    DetailedPictureDao detailedPictureDao = new DetailedPictureDao();
+    List<DetailedPicture> recent = detailedPictureDao.getSortedDetailedPictures(5,"RecentUpdate");
   %>
   <%=request.getServletContext().getRealPath("/")%>
   <!--最热图片-->
@@ -82,8 +85,10 @@
           <div class="holder">
             <a href="details.jsp?imageID=${picture.getId()}"><img src="${pageContext.request.contextPath}/resources/travel-images/large/${picture.getPath()}"> </a>
             <ul>
-              <li class="work">${picture.getTitle()}</li>
-              <li class="artist">by ${picture.getAuthor()}</li>
+              <li class="work">※${picture.getTitle()}※</li>
+              <li class="artist"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span>by ${picture.getAuthor()}</li>
+              <li><span class="glyphicon glyphicon-grain" aria-hidden="true"></span>${picture.getTheme()}</li>
+              <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Time:${picture.getRecentUpdate()}</li>
             </ul>
           </div>
         </c:forEach>
@@ -139,7 +144,7 @@
       text-align: left;
       position: absolute;
       top: 35%;
-      left: 25%;
+      list-style: none;
       font-family: Lemon;
       opacity: 0;
       width: 100%;

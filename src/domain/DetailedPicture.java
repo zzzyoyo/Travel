@@ -10,6 +10,15 @@ public class DetailedPicture extends Picture {
     private String countryISO;
     private int cityId;
     private int uid;
+    private String recentUpdate;
+
+    public String getRecentUpdate() {
+        return recentUpdate;
+    }
+
+    public void setRecentUpdate(String recentUpdate) {
+        this.recentUpdate = recentUpdate;
+    }
 
     public int getUid() {
         return uid;
