@@ -2,7 +2,7 @@ package functionPackage;
 
 import java.io.*;
 
-public class SavePicture {
+public class PictureFileOperation {
     private static String path = "E:\\大二下\\软件开发\\project\\shareYourTravel\\web\\resources\\travel-images\\";
     private static String[] paths = {"large","medium","small","square-medium","square-small","square-tiny","thumb"};
     public static boolean save(String fileName,InputStream is){

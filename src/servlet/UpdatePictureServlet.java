@@ -1,12 +1,10 @@
 package servlet;
 
 import dao.DetailedPictureDao;
-import dao.FavorDao;
 import dao.PictureDao;
 import domain.DetailedPicture;
-import domain.Picture;
 import functionPackage.ReflectionUtils;
-import functionPackage.SavePicture;
+import functionPackage.PictureFileOperation;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -20,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -70,10 +68,14 @@ public class UpdatePictureServlet extends HttpServlet {
         for(FileItem item:items){
             if(!item.isFormField()){
                 //获得文件名
-                String fileName = item.getName();
+//                String fileName = item.getName();
+                //防止文件名重复
+                String initName = item.getName();
+                initName = initName.substring(initName.lastIndexOf('.'));//后缀名
+                String fileName = String.valueOf(new Date().getTime())+initName;
                 values.put("path",fileName);
                 // 保存文件
-                isSaved = SavePicture.save(fileName,item.getInputStream());
+                isSaved = PictureFileOperation.save(fileName,item.getInputStream());
             }
             else {
                 String fieldName = item.getFieldName();
@@ -115,7 +117,32 @@ public class UpdatePictureServlet extends HttpServlet {
         }
     }
 
-    private void set(HttpServletRequest request, HttpServletResponse response){
+    private void set(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        System.out.println("set");
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        boolean isSaved = false;
 
+        factory.setSizeThreshold(1024 * 1024);
+        List<FileItem> items = null;
+
+        try {
+            items = upload.parseRequest(request);
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        }
+        for(FileItem item:items){
+            if(!item.isFormField()){
+                //获得文件名
+                String fileName = item.getName();
+                System.out.println(fileName);
+            }
+            else {
+                String fieldName = item.getFieldName();
+                Object value = item.getString();
+                value = new String( ((String)value).getBytes("ISO-8859-1"), "UTF-8");
+                System.out.println(fieldName+value);
+            }
+        }
     }
 }

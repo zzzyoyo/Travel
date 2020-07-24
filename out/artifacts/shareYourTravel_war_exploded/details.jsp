@@ -38,6 +38,7 @@
     } catch (NumberFormatException e) {
         e.printStackTrace();
         request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message=invalid imageID").forward(request,response);
+        return;
     }
 %>
 <!--根据picture是否为null展示页面-->

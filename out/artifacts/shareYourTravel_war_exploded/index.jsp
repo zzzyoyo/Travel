@@ -81,7 +81,7 @@
           <div class="holder">
             <a href="details.jsp?imageID=${picture.getId()}"><img src="${pageContext.request.contextPath}/resources/travel-images/large/${picture.getPath()}"> </a>
             <ul>
-              <li class="work">${picture.getTitle()}></li>
+              <li class="work">${picture.getTitle()}</li>
               <li class="artist">by ${picture.getAuthor()}</li>
             </ul>
           </div>

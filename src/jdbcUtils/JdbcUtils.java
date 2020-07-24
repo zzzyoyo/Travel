@@ -15,6 +15,10 @@ public class JdbcUtils {
         dataSource = new ComboPooledDataSource("travelSource");
     }
 
+    public static DataSource getDataSource() {
+        return dataSource;
+    }
+
     public static Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }

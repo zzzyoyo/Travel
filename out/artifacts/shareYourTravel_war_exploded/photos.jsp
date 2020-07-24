@@ -68,7 +68,7 @@
         })
     }
     function updatePhoto(imageId) {
-        alert('update'+imageId);
+        $(location).attr('href', '${pageContext.request.contextPath}/update.jsp?imageID='+imageId);
     }
 </script>
 <style type="text/css">

@@ -1,5 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="functionPackage.Require" %>
-<%@ page import="domain.User" %><%--
+<%@ page import="domain.User" %>
+<%@ page import="dao.DetailedPictureDao" %>
+<%@ page import="domain.DetailedPicture" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/23
@@ -25,42 +28,82 @@
 <%
     User user = (User)session.getAttribute("userDetails");
 %>
+<%
+    DetailedPicture detailedPicture = null;
+    if(request.getParameter("imageID")!=null){
+        try {
+            int id = Integer.parseInt(request.getParameter("imageID"));
+            DetailedPictureDao detailedPictureDao = new DetailedPictureDao();
+            detailedPicture = detailedPictureDao.getDetailedPictureByID(id);
+        } catch (NumberFormatException e) {//就是上传界面，什么都不做
+            e.printStackTrace();
+        }
+    }
+    pageContext.setAttribute("detailedPicture",detailedPicture);
+%>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
 <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <p class="text-success" style="text-align: center">${param.successMessage}</p>
 <p class="text-danger">${param.failureMessage}</p>
 <div style="width: 30%;margin: auto">
-    <h3>上传你的图片</h3>
-    <form action="${pageContext.request.contextPath}/add.update" method="post" enctype="multipart/form-data">
+    <c:choose>
+        <c:when test="${detailedPicture==null}">
+            <h3>上传图片</h3>
+        </c:when>
+        <c:otherwise>
+            <h3>修改图片</h3>
+        </c:otherwise>
+    </c:choose>
+    <form action="${pageContext.request.contextPath}/${detailedPicture==null?"add":"set"}.update" method="post" enctype="multipart/form-data">
         <input type="hidden" name="uid" value="<%=user.getUid()%>">
         <div class="form-group">
             <label for="exampleInputTtile">标题</label>
-            <input type="text" class="form-control" id="exampleInputTtile" placeholder="Title" name="title">
+            <input type="text" class="form-control" id="exampleInputTtile" placeholder="Title" name="title" value="${detailedPicture.getTitle()}" required>
         </div>
         <div class="form-group">
             <label for="exampleInputTheme">主题</label>
-            <input type="text" class="form-control" id="exampleInputTheme" placeholder="Theme" name="theme">
+            <input type="text" class="form-control" id="exampleInputTheme" placeholder="Theme" name="theme" value="${detailedPicture.getTheme()}" required>
         </div>
         <div class="form-group">
             <label for="exampleInputDescription">简介</label>
-            <textarea class="form-control" id="exampleInputDescription" placeholder="Description" rows="3" name="description"></textarea>
+            <textarea class="form-control" id="exampleInputDescription" placeholder="Description" rows="3" name="description" required>
+                ${detailedPicture.getDescription()}
+            </textarea>
         </div>
         <div class="form-group">
             <label for="countries">国家</label>
-            <select class="form-control" id="countries" name="countryISO">
+            <select class="form-control" id="countries" name="countryISO" required>
             </select>
         </div>
         <div class="form-group">
             <label for="cities">城市</label>
-            <select class="form-control" id="cities" name="cityId">
+            <select class="form-control" id="cities" name="cityId" required>
             </select>
         </div>
+        <c:if test="${detailedPicture!=null}">
+            <!--修改页面，需要上传旧的文件名以删除服务器上的旧图片-->
+            <input type="hidden" name="oldFileName" value="${detailedPicture.getPath()}">
+        </c:if>
         <div class="form-group">
             <label for="exampleInputFile">选择图片</label>
-            <input type="file" id="exampleInputFile" name="path">
-            <p class="help-block">Example block-level help text here.</p>
+            <input type="file" id="exampleInputFile" name="path" ${detailedPicture!=null?"":"required"} accept="image/jpg, image/png, image/jpeg, image/gif">
+            <c:choose>
+                <c:when test="${detailedPicture==null}">
+                    <p class="help-block">请选择一张图片</p>
+                </c:when>
+                <c:otherwise>
+                    <p class="help-block">如不需要修改图片文件可以选择不选</p>
+                </c:otherwise>
+            </c:choose>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <c:choose>
+            <c:when test="${detailedPicture==null}">
+                <button type="submit" class="btn btn-default">上传</button>
+            </c:when>
+            <c:otherwise>
+                <button type="submit" class="btn btn-default">修改</button>
+            </c:otherwise>
+        </c:choose>
     </form>
 </div>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -68,6 +111,9 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <script>
+    let selectedCountry = '${detailedPicture.getCountryISO()}';
+    let selectedCity = '${detailedPicture.getCityId()}';
+
     function loadAllCountries() {
         $.ajax({
             url:'${pageContext.request.contextPath}/allCountries.geo',
@@ -79,7 +125,12 @@
                     let countries = data.countries;
                     let countrySelector = $('#countries');
                     countries.forEach(function (country) {
-                        countrySelector.append("<option value='"+ country.id +"'>"+ country.name +"</option>");
+                        if(country.id == selectedCountry){
+                            countrySelector.append("<option value='"+ country.id +"' selected='selected'>"+ country.name +"</option>");
+                        }
+                        else {
+                            countrySelector.append("<option value='"+ country.id +"'>"+ country.name +"</option>");
+                        }
                     })
                 }
                 // console.log(data);
@@ -101,8 +152,12 @@
                     let cities = data.cities;
                     let citySelector = $('#cities');
                     citySelector.empty();
-                    cities.forEach(function (country) {
-                        citySelector.append("<option value='"+ country.id +"'>"+ country.name +"</option>");
+                    cities.forEach(function (city) {
+                        if(city.id == selectedCity){
+                            citySelector.append("<option value='"+ city.id +"' selected='selected>"+ city.name +"</option>");
+                        }
+                        else {
+                            citySelector.append("<option value='"+ city.id +"'>"+ city.name +"</option>");}
                     })
                 }
             }
@@ -111,7 +166,8 @@
 </script>
 <script>
     loadAllCountries();
-    loadCities('AD')
+    //jQuery获取不到动态添加的元素，不能用$('#countries').val()来获取
+    loadCities(selectedCountry||'AD');
     //动态改变city的选项
     $('#countries').change(function () {
         // console.log($(this).val());
