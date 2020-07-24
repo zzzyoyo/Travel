@@ -80,7 +80,7 @@
         background-color: #fff;
         border-radius: 4px;
         width: 160px;
-        height: 260px;
+        height: 250px;
         position: relative;
     }
     .deleteButton{
@@ -95,6 +95,7 @@
     }
     .myImage{
         width: 150px;
+        height: 150px;
     }
 </style>
 </body>

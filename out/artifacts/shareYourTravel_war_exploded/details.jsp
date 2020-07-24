@@ -222,6 +222,7 @@
     }
     .image img{
         width: 245px;
+        height: 266px;
         border: solid 5px black;
         position: absolute;
         top: 0;
@@ -266,7 +267,7 @@
     #description{
         font-size: 20px;
         position: fixed;
-        top: 300px;
+        top: 350px;
         width: 245px;
     }
     .myButton{

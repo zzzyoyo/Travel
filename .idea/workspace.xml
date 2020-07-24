@@ -8,29 +8,23 @@
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/DetailedPictureDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/DetailedPictureDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/functionPackage/PictureFileOperation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/functionPackage/PictureFileOperation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/UpdatePictureServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/UpdatePictureServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DetailedPictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DetailedPictureDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/photos.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/travel-images/large/1595580450115.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/travel-images/medium/1595580450115.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/travel-images/small/1595580450115.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/travel-images/square-medium/1595580450115.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/travel-images/square-small/1595580450115.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/travel-images/square-tiny/1595580450115.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/travel-images/thumb/1595580450115.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/dao/DetailedPictureDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/dao/DetailedPictureDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/functionPackage/PictureFileOperation.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/functionPackage/PictureFileOperation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/UpdatePictureServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/UpdatePictureServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/large/1595567380898.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/large/logo.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/medium/1595567380898.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/medium/logo.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/small/1595567380898.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/small/logo.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/square-medium/1595567380898.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/square-medium/logo.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/square-small/1595567380898.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/square-small/logo.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/square-tiny/1595567380898.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/square-tiny/logo.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/thumb/1595567380898.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/travel-images/thumb/logo.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/photos.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +201,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -239,6 +233,7 @@
       <workItem from="1595422141936" duration="12113000" />
       <workItem from="1595476814899" duration="34423000" />
       <workItem from="1595554565738" duration="24440000" />
+      <workItem from="1595596273888" duration="1197000" />
     </task>
     <servers />
   </component>
@@ -350,147 +345,18 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="35" y="77" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1595388803245" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1595554879736">
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1595596274907">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1595554879736" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1595596274907" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>118</line>
-          <properties class="servlet.UpdatePictureServlet" method="set">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java</url>
-          <line>31</line>
-          <properties class="functionPackage.PictureFileOperation" method="delete">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java</url>
-          <line>7</line>
-          <properties class="functionPackage.PictureFileOperation" method="save">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>136</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>161</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>180</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>163</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>164</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>166</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>169</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>171</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>172</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>175</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>173</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>177</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>174</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>170</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java</url>
           <line>42</line>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>181</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>182</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>187</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
-          <line>188</line>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

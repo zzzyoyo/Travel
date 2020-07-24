@@ -75,7 +75,7 @@ public class UpdatePictureServlet extends HttpServlet {
                 String fileName = String.valueOf(new Date().getTime())+initName;
                 values.put("path",fileName);
                 // 保存文件
-                isSaved = PictureFileOperation.save(fileName,item.getInputStream());
+                isSaved = PictureFileOperation.save(request.getServletContext().getRealPath("/"),fileName,item.getInputStream());
             }
             else {
                 String fieldName = item.getFieldName();
@@ -117,7 +117,7 @@ public class UpdatePictureServlet extends HttpServlet {
     }
 
     private void set(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("set");
+//        System.out.println("set");
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         boolean isOK = false;
@@ -172,7 +172,8 @@ public class UpdatePictureServlet extends HttpServlet {
             String fileName = new Date().getTime()+initName;
             values.put("path",fileName);
             // 保存和删除文件
-            isOK = PictureFileOperation.save(fileName,pictureItem.getInputStream()) && PictureFileOperation.delete(oldFileName);
+            isOK = PictureFileOperation.save(request.getServletContext().getRealPath("/"),fileName,pictureItem.getInputStream())
+                    && PictureFileOperation.delete(request.getServletContext().getRealPath("/"),oldFileName);
         }
 
         if(isOK){

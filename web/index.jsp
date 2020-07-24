@@ -29,6 +29,7 @@
     List<Picture> hottest = pictureDao.getSortedPictures(5,"hot");
     List<Picture> recent = pictureDao.getSortedPictures(5,"RecentUpdate");
   %>
+  <%=request.getServletContext().getRealPath("/")%>
   <!--最热图片-->
   <h2 style="color: #9F79EE;text-align: left;margin: 10px">最热图片</h2>
   <div id="carousel-example-generic" class="carousel slide hot-works" data-ride="carousel">
