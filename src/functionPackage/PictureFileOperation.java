@@ -28,4 +28,8 @@ public class PictureFileOperation {
             return false;
         }
     }
+
+    public static boolean delete(String fileName){
+        return true;
+    }
 }

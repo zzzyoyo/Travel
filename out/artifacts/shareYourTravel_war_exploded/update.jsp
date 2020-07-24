@@ -56,6 +56,11 @@
     </c:choose>
     <form action="${pageContext.request.contextPath}/${detailedPicture==null?"add":"set"}.update" method="post" enctype="multipart/form-data">
         <input type="hidden" name="uid" value="<%=user.getUid()%>">
+        <c:if test="${detailedPicture!=null}">
+            <!--修改页面，需要上传旧的文件名和图片的id-->
+            <input type="hidden" name="oldFileName" value="${detailedPicture.getPath()}">
+            <input type="hidden" name="id" value="${detailedPicture.getId()}">
+        </c:if>
         <div class="form-group">
             <label for="exampleInputTtile">标题</label>
             <input type="text" class="form-control" id="exampleInputTtile" placeholder="Title" name="title" value="${detailedPicture.getTitle()}" required>
@@ -80,10 +85,6 @@
             <select class="form-control" id="cities" name="cityId" required>
             </select>
         </div>
-        <c:if test="${detailedPicture!=null}">
-            <!--修改页面，需要上传旧的文件名以删除服务器上的旧图片-->
-            <input type="hidden" name="oldFileName" value="${detailedPicture.getPath()}">
-        </c:if>
         <div class="form-group">
             <label for="exampleInputFile">选择图片</label>
             <input type="file" id="exampleInputFile" name="path" ${detailedPicture!=null?"":"required"} accept="image/jpg, image/png, image/jpeg, image/gif">
@@ -96,14 +97,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <c:choose>
-            <c:when test="${detailedPicture==null}">
-                <button type="submit" class="btn btn-default">上传</button>
-            </c:when>
-            <c:otherwise>
-                <button type="submit" class="btn btn-default">修改</button>
-            </c:otherwise>
-        </c:choose>
+        <button type="submit" class="btn btn-default">${detailedPicture==null?"上传":"修改"}</button>
     </form>
 </div>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->

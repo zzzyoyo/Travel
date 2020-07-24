@@ -37,4 +37,11 @@ public class DetailedPictureDao extends Dao<DetailedPicture> {
          return update(sql,detailedPicture.getTitle(),detailedPicture.getDescription(),detailedPicture.getTheme(),
                 detailedPicture.getCityId(), detailedPicture.getUid(),detailedPicture.getPath(),detailedPicture.getCountryISO());
     }
+
+    public boolean setPicture(DetailedPicture detailedPicture){
+        String sql = "UPDATE travelimage SET Title=?,Description= ? , Content = ?, Country_RegionCodeISO = ?, " +
+                "CityCode = ? WHERE ImageID = ?";
+        return update(sql,detailedPicture.getTitle(),detailedPicture.getDescription(),detailedPicture.getTheme(),
+                detailedPicture.getCountryISO(),detailedPicture.getCityId(),detailedPicture.getId());
+    }
 }
