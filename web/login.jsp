@@ -28,15 +28,16 @@
 <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 50%;margin: auto">
     <p class="help-block" style="color: red">${requestScope.message}</p>
-    <form action="<%=request.getContextPath()%>/login" method="post">
+    <form action="<%=request.getContextPath()%>/login" method="post" onsubmit="encrypt()">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address / Username</label>
             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="邮箱/用户名" name="emailOrName" value="${param.emailOrName}" required>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password" required>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" required>
         </div>
+        <input type="hidden" name="password" id="md5password">
         <button type="submit" class="btn btn-default">登录</button>
         <a href="${pageContext.request.contextPath}/register.jsp"><p class="help-block">没有注册？点击此处注册<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></p></a>
     </form>
@@ -47,5 +48,12 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<!-- MD5加密代码 -->
+<script src="resources/js/md5.js"></script>
+<script>
+    function encrypt() {
+        $("#md5password").val(hex_md5($("#exampleInputPassword1").val()));
+    }
+</script>
 </body>
 </html>

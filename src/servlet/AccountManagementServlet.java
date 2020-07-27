@@ -2,6 +2,7 @@ package servlet;
 
 import dao.UserDao;
 import domain.User;
+import functionPackage.CryptUtils;
 import functionPackage.Require;
 
 import javax.servlet.ServletException;
@@ -26,9 +27,7 @@ public class AccountManagementServlet extends HttpServlet {
         } catch (NoSuchMethodException e) {
             request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message="+methodName+" dose not exist").forward(request,response);
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
@@ -37,7 +36,7 @@ public class AccountManagementServlet extends HttpServlet {
         doPost(request,response);
     }
 
-    private void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String emailOrName = request.getParameter("emailOrName");
         String password = request.getParameter("password");
         if(!Require.requireStringNotEmpty(emailOrName,password)){
@@ -45,7 +44,7 @@ public class AccountManagementServlet extends HttpServlet {
             return;
         }
         UserDao userDao = new UserDao();
-        String queryPassword = userDao.getPasswordByNameOrEmail(emailOrName);
+        String queryPassword = CryptUtils.GetMD5Code(userDao.getPasswordByNameOrEmail(emailOrName));
         if(password.equals(queryPassword)){
             //login success
             User user = userDao.getUserByNameOrEmail(emailOrName);
