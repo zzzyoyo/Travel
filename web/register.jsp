@@ -23,7 +23,7 @@
 <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <div style="width: 70%;margin: auto">
     <p class="help-block" style="color: red">${requestScope.message}</p>
-    <form class="form-horizontal" action="${pageContext.request.contextPath}/register" method="post">
+    <form class="form-horizontal" action="${pageContext.request.contextPath}/register" method="post" onsubmit="encrypt()">
         <div class="form-group">
             <label for="inputUsername3" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
@@ -42,6 +42,7 @@
                 <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="password" required>
             </div>
         </div>
+        <input type="hidden" name="md5Password" id="md5password">
         <div class="form-group">
             <label for="inputConfirm" class="col-sm-2 control-label">Confirm</label>
             <div class="col-sm-10">
@@ -68,8 +69,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <!--表单验证插件-->
 <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
-
+<!-- MD5加密代码 -->
+<script src="resources/js/md5.js"></script>
 <script>
+    function encrypt() {
+        $("#md5password").val(hex_md5($("#inputPassword3").val()));
+    }
     function changeImg(){
         document.getElementById("validateCodeImg").src="${pageContext.request.contextPath}/drawImage?"+Math.random();//为了防止缓存必须采用不同的url
     }

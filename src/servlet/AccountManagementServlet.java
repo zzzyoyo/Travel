@@ -44,8 +44,9 @@ public class AccountManagementServlet extends HttpServlet {
             return;
         }
         UserDao userDao = new UserDao();
-        String queryPassword = CryptUtils.GetMD5Code(userDao.getPasswordByNameOrEmail(emailOrName));
-        if(password.equals(queryPassword)){
+        String queryPassword = userDao.getPasswordByNameOrEmail(emailOrName);
+        String md5Password = CryptUtils.GetMD5Code(userDao.getPasswordByNameOrEmail(emailOrName));//为了让之前的账号也能登陆
+        if(password.equals(queryPassword)||password.equals(md5Password)){
             //login success
             User user = userDao.getUserByNameOrEmail(emailOrName);
             HttpSession session= request.getSession();
@@ -66,7 +67,7 @@ public class AccountManagementServlet extends HttpServlet {
 
     private void register(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String password = request.getParameter("md5Password");
         String email = request.getParameter("email");
         if(!Require.requireStringNotEmpty(username,password,email)){
             request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
