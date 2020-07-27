@@ -32,7 +32,6 @@
     DetailedPictureDao detailedPictureDao = new DetailedPictureDao();
     List<DetailedPicture> recent = detailedPictureDao.getSortedDetailedPictures(5,"RecentUpdate");
   %>
-  <%=request.getServletContext().getRealPath("/")%>
   <!--最热图片-->
   <h2 style="color: #9F79EE;text-align: left;margin: 10px">最热图片</h2>
   <div id="carousel-example-generic" class="carousel slide hot-works" data-ride="carousel">
@@ -88,7 +87,7 @@
               <li class="work">※${picture.getTitle()}※</li>
               <li class="artist"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span>by ${picture.getAuthor()}</li>
               <li><span class="glyphicon glyphicon-grain" aria-hidden="true"></span>${picture.getTheme()}</li>
-              <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Time:${picture.getRecentUpdate()}</li>
+              <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>${picture.getRecentUpdate()}</li>
             </ul>
           </div>
         </c:forEach>

@@ -32,6 +32,16 @@
 %>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <h2 style="text-align: center;color: cornflowerblue;">我的收藏</h2>
+<div class="btn-group" style="margin-left: 20px">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        我的足迹 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu myUl">
+        <c:forEach var="picture" items="${sessionScope.footprints}">
+            <li><a href="${pageContext.request.contextPath}/details.jsp?imageID=${picture.getId()}">${picture.getTitle()}</a></li>
+        </c:forEach>
+    </ul>
+</div>
 <div id="results" class="row" style="width: 90%;margin: auto">
     <!-- 收藏展示 -->
 </div>
@@ -91,7 +101,7 @@
     }
     .myImage{
         width: 150px;
-        height: 150px;
+        max-height: 150px;
     }
 </style>
 </body>

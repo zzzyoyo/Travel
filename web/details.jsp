@@ -2,7 +2,9 @@
 <%@ page import="dao.DetailedPictureDao" %>
 <%@ page import="domain.DetailedPicture" %>
 <%@ page import="domain.User" %>
-<%@ page import="dao.FavorDao" %><%--
+<%@ page import="dao.FavorDao" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Zhangyuru
   Date: 2020/7/20
@@ -46,6 +48,30 @@
     <div class="alert alert-danger" role="alert" style="text-align: center">ID为${param.imageID}的图片不存在</div>
 </c:if>
 <c:if test="<%=detailedPicture != null%>">
+    <%
+        //加入足迹
+        System.out.println("footprints");
+        List<DetailedPicture> footprints = (List<DetailedPicture>) session.getAttribute("footprints");
+        if(footprints == null){
+            footprints = new ArrayList<DetailedPicture>();
+            footprints.add(detailedPicture);
+            session.setAttribute("footprints",footprints);
+        }
+        else {
+            for(DetailedPicture footprint:footprints){
+                if(detailedPicture.getId() == footprint.getId()){
+                    footprints.remove(footprint);
+                    break;
+                }
+            }
+            footprints.add(0,detailedPicture);//insert into the first position
+            if(footprints.size() > 10){
+                footprints.remove(footprints.size()-1);//remove the last one
+            }
+        }
+        System.out.println(footprints);
+
+    %>
     <div class="information">
         <table style="word-break: break-word">
             <tr>
@@ -222,7 +248,7 @@
     }
     .image img{
         width: 245px;
-        height: 266px;
+        max-height: 266px;
         border: solid 5px black;
         position: absolute;
         top: 0;

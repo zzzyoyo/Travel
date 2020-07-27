@@ -71,6 +71,7 @@
     }
     .myImage{
         width: 150px;
+        max-height: 150px;
     }
 </style>
 </body>
