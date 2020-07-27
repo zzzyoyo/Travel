@@ -101,10 +101,7 @@
     }
     .myImage{
         width: 150px;
-        height: 150px;
-    }
-    .myUl{
-        list-style:decimal;
+        max-height: 150px;
     }
 </style>
 </body>

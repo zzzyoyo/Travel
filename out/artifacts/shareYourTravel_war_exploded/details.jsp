@@ -49,28 +49,27 @@
 </c:if>
 <c:if test="<%=detailedPicture != null%>">
     <%
-        //加入足迹
-        System.out.println("footprints");
-        List<DetailedPicture> footprints = (List<DetailedPicture>) session.getAttribute("footprints");
-        if(footprints == null){
-            footprints = new ArrayList<DetailedPicture>();
-            footprints.add(detailedPicture);
-            session.setAttribute("footprints",footprints);
-        }
-        else {
-            for(DetailedPicture footprint:footprints){
-                if(detailedPicture.getId() == footprint.getId()){
-                    footprints.remove(footprint);
-                    break;
+        if(isLogin){
+            //加入足迹
+            List<DetailedPicture> footprints = (List<DetailedPicture>) session.getAttribute("footprints");
+            if(footprints == null){
+                footprints = new ArrayList<DetailedPicture>();
+                footprints.add(detailedPicture);
+                session.setAttribute("footprints",footprints);
+            }
+            else {
+                for(DetailedPicture footprint:footprints){
+                    if(detailedPicture.getId() == footprint.getId()){
+                        footprints.remove(footprint);
+                        break;
+                    }
+                }
+                footprints.add(0,detailedPicture);//insert into the first position
+                if(footprints.size() > 10){
+                    footprints.remove(footprints.size()-1);//remove the last one
                 }
             }
-            footprints.add(0,detailedPicture);//insert into the first position
-            if(footprints.size() > 10){
-                footprints.remove(footprints.size()-1);//remove the last one
-            }
         }
-        System.out.println(footprints);
-
     %>
     <div class="information">
         <table style="word-break: break-word">
