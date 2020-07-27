@@ -5,6 +5,15 @@ public class User {
     private String password;
     private String email;
     private int uid;
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public User(){
 

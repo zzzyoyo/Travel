@@ -27,7 +27,9 @@
     User user = (User)session.getAttribute("userDetails");
 %>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
-<h2 style="text-align: center;color: darkred;">我的照片</h2>
+<div class="page-header">
+    <h1>我的照片 <small><%=user.getUsername()%>的照片</small></h1>
+</div>
 <div id="results" class="row" style="width: 90%;margin: auto">
     <!-- 展示 -->
 </div>

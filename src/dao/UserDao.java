@@ -11,10 +11,9 @@ public class UserDao extends Dao<User>{
     }
 
     public User getUserByNameOrEmail(String emailOrName){
-        String sql = "SELECT Pass password, UID uid, UserName username, Email email FROM traveluser WHERE UserName = ? OR Email = ?";
-        User user = get(sql,emailOrName,emailOrName);
+        String sql = "SELECT Pass password, UID uid, UserName username, Email email, State state FROM traveluser WHERE UserName = ? OR Email = ?";
         //System.out.println(user);
-        return user;
+        return get(sql,emailOrName,emailOrName);
     }
 
     public long getCountWithName(String name) {

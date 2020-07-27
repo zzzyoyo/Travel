@@ -31,7 +31,9 @@
     User user = (User)session.getAttribute("userDetails");
 %>
 <jsp:include page="WEB-INF/jspFiles/navigation.jsp"></jsp:include>
-<h2 style="text-align: center;color: cornflowerblue;">我的收藏</h2>
+<div class="page-header">
+    <h1>我的收藏 <small><%=user.getUsername()%>的收藏</small></h1>
+</div>
 <div class="btn-group" style="margin-left: 20px">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         我的足迹 <span class="caret"></span>
