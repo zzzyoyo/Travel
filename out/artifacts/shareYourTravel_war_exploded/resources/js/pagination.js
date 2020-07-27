@@ -95,7 +95,7 @@ function resultOfPage(page) {
         dataType:"json",    //数据类型为json格式
         contentType: "application/x-www-form-urlencoded;charset=UTF-8",
         success(data){
-            console.log("search success")
+            // console.log("search success")
             if(data.hasOwnProperty("pictures")){
                 // console.log(data.pictures)
                 displayPictures(data.pictures)
@@ -119,7 +119,7 @@ function displayPictures(pictures) {
         }
         else if(requestURL.indexOf('photos') != -1){
             //photos
-            h += '<button type="button" class="btn btn-success btn-sm deleteButton" onclick="deletePhoto('+ pictureElement.id +')">删除</button>\n';
+            h += '<button type="button" class="btn btn-success btn-sm deleteButton" onclick="confirmDelete('+ pictureElement.id +')">删除</button>\n';
             h += '<button type="button" class="btn btn-warning btn-sm updateButton" onclick="updatePhoto('+ pictureElement.id +')">修改</button>\n';
         }
         h +=' </div>'
