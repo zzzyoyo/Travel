@@ -8,14 +8,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/FriendServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/servlet/FriendServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/friends.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/friends.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/FriendServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/servlet/FriendServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/css/alert.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/resources/css/alert.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/collection.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/friends.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/friends.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/photos.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/resources/css/alert.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/resources/css/alert.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +240,7 @@
       <workItem from="1595596273888" duration="5319000" />
       <workItem from="1595827569343" duration="14099000" />
       <workItem from="1595861327641" duration="5945000" />
-      <workItem from="1595901376166" duration="26320000" />
+      <workItem from="1595901376166" duration="27080000" />
     </task>
     <servers />
   </component>

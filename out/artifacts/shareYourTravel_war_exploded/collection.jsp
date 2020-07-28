@@ -1,8 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="functionPackage.Require" %>
-<%@ page import="dao.PictureDao" %>
-<%@ page import="java.util.List" %>
-<%@ page import="domain.Picture" %>
 <%@ page import="domain.User" %>
 <%@ page import="dao.UserDao" %><%--
   Created by IntelliJ IDEA.
@@ -22,6 +19,8 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- alert css -->
+    <link href="${pageContext.request.contextPath}/resources/css/alert.css" rel="stylesheet">
 </head>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -77,6 +76,8 @@
         </ul>
     </nav>
 </div>
+<!-- 加载自定义alert方法 -->
+<script src="${pageContext.request.contextPath}/resources/js/alert.js"></script>
 <!-- 加载分页脚本  -->
 <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
 <!-- 请求第一页  -->
@@ -96,7 +97,8 @@
                 if(data.indexOf('success') !== -1){
                     count --;
                     pageCount = Math.ceil(count/pageSize);
-                    display(currentPage)
+                    display(currentPage);
+                    alertSuccess('取消成功')
                 }
                 console.log(data);
             }

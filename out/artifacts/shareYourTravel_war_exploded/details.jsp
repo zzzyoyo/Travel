@@ -22,6 +22,8 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--alert-->
+    <link href="${pageContext.request.contextPath}/resources/css/alert.css" rel="stylesheet">
 </head>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
 <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
@@ -138,6 +140,8 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<!-- 加载自定义alert方法 -->
+<script src="${pageContext.request.contextPath}/resources/js/alert.js"></script>
 <c:if test="<%=isLogin%>">
     <script>
         function collect() {
@@ -152,6 +156,7 @@
                     if(data.indexOf('success') !== -1){
                         $("#cancelButton").css('display','inline-block');
                         $("#collectButton").css('display','none');
+                        alertSuccess("收藏成功！")
                     }
                     console.log(data);
                 }
@@ -169,6 +174,7 @@
                     if(data.indexOf('success') !== -1){
                         $("#cancelButton").css('display','none');
                         $("#collectButton").css('display','inline-block');
+                        alertSuccess("取消收藏成功！")
                     }
                     console.log(data);
                 }

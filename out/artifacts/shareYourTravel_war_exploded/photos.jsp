@@ -17,6 +17,8 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--alert-->
+    <link href="${pageContext.request.contextPath}/resources/css/alert.css" rel="stylesheet">
 </head>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
 <%
@@ -62,8 +64,11 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<!-- 加载自定义alert方法 -->
+<script src="${pageContext.request.contextPath}/resources/js/alert.js"></script>
 <!-- 加载分页脚本  -->
 <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
+
 <!-- 请求第一页  -->
 <script>
     firstPage('${pageContext.request.contextPath}/photoCount.get','${pageContext.request.contextPath}/photos.get','uid=<%=user.getUid()%>')
@@ -86,7 +91,8 @@
                 if(data.indexOf('success') !== -1){
                     count --;
                     pageCount = Math.ceil(count/pageSize);
-                    display(currentPage)
+                    display(currentPage);
+                    alertSuccess("删除成功")
                 }
                 console.log(data);
             }
