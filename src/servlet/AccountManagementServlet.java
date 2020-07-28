@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-@WebServlet(name = "AccountManagementServlet",urlPatterns = {"/register","/login","/logout"})
+@WebServlet(name = "AccountManagementServlet",urlPatterns = {"/register","/login","/logout","/changeState"})
 public class AccountManagementServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //中文乱码问题
@@ -92,5 +92,20 @@ public class AccountManagementServlet extends HttpServlet {
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         request.getSession().invalidate();
         response.sendRedirect(request.getContextPath());
+    }
+
+    private void changeState(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        int state = Integer.parseInt(request.getParameter("state"));
+        int uid = Integer.parseInt(request.getParameter("uid"));
+        UserDao userDao = new UserDao();
+        if(userDao.setState(state,uid)){
+            //update userDetails in session
+            User user = userDao.getUserByUid(uid);
+            request.getSession().setAttribute("userDetails",user);
+            response.getWriter().println("success");
+        }
+        else {
+            response.getWriter().println("error");
+        }
     }
 }

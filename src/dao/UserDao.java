@@ -60,4 +60,9 @@ public class UserDao extends Dao<User>{
                 "WHERE f.inviteeID = ? AND u.UID = f.inviterID AND f.state = 0;";
         return getAll(sql,uid);
     }
+
+    public boolean setState(int state,int uid){
+        String sql = "UPDATE traveluser SET State = ? WHERE UID = ?;";
+        return update(sql,state,uid);
+    }
 }
