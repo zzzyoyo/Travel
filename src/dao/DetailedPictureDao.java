@@ -2,6 +2,8 @@ package dao;
 
 import domain.DetailedPicture;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 public class DetailedPictureDao extends Dao<DetailedPicture> {
@@ -25,9 +27,11 @@ public class DetailedPictureDao extends Dao<DetailedPicture> {
 
     public boolean setPicture(DetailedPicture detailedPicture){
         String sql = "UPDATE travelimage SET Title=?,Description= ? , Content = ?, Country_RegionCodeISO = ?, " +
-                "CityCode = ?, PATH = ?  WHERE ImageID = ?";
+                "CityCode = ?, PATH = ?, RecentUpdate = ? WHERE ImageID = ?";
+//        System.out.println(new Date());
+//        System.out.println(new Timestamp(new Date().getTime()));
         return update(sql,detailedPicture.getTitle(),detailedPicture.getDescription(),detailedPicture.getTheme(),
-                detailedPicture.getCountryISO(),detailedPicture.getCityId(),detailedPicture.getPath(),detailedPicture.getId());
+                detailedPicture.getCountryISO(),detailedPicture.getCityId(),detailedPicture.getPath(),new Timestamp(new Date().getTime()),detailedPicture.getId());
     }
 
     /**

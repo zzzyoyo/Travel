@@ -34,9 +34,9 @@
         <h3 class="panel-title">个人信息</h3>
     </div>
     <div class="panel-body">
-        用户名：<%=user.getUsername()%><br>
-        邮箱：<%=user.getEmail()%><br>
-        是否公开收藏:<input type="radio" name="state" value="1">是<input type="radio" name="state" value="0">否
+        <strong>用户名：</strong><%=user.getUsername()%><br>
+        <strong>邮箱：</strong><%=user.getEmail()%><br>
+        <strong>是否公开收藏:</strong><input type="radio" name="state" value="1">是<input type="radio" name="state" value="0">否
     </div>
 </div>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
