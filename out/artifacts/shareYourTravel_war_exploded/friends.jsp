@@ -236,6 +236,7 @@
     }
     //搜索好友，可模糊查询
     function searchUser() {
+        console.log("search")
         let content = $("#searchBar").val();
         $.ajax({
             url:"${pageContext.request.contextPath}/searchUser.friend",
@@ -247,10 +248,10 @@
             dataType:"json",    //数据类型为json格式
             contentType: "application/x-www-form-urlencoded;charset=UTF-8",
             success(data){
-                // console.log("search success");
+                console.log("search success");
                 if(data.hasOwnProperty("users") && data.hasOwnProperty("states")){
-                    // console.log(data.users);
-                    // console.log(data.states);
+                    console.log(data.users);
+                    console.log(data.states);
                     showUsers(data.users,data.states)
                 }
             }

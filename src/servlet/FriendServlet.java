@@ -100,9 +100,9 @@ public class FriendServlet extends HttpServlet {
         List<User> users = userDao.getUserByFuzzyUsername(fuzzyUsername);
         InvitationDao invitationDao = new InvitationDao();
         List<Integer> friendIds = invitationDao.getFriendIdsWithUid(uid);
-        System.out.println("friendIds:"+friendIds);
+//        System.out.println("friendIds:"+friendIds);
         List<Integer> waitingIds = invitationDao.getWaitingIdsWithUid(uid);
-        System.out.println("waitingIds:"+waitingIds);
+//        System.out.println("waitingIds:"+waitingIds);
         List<Integer> states = new ArrayList<>(users.size());
         for(User user:users){
             int userId = user.getUid();
@@ -120,8 +120,8 @@ public class FriendServlet extends HttpServlet {
             }
         }
         JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("users",users);
-//        jsonObject.put("states",states);
+        jsonObject.put("users",users);
+        jsonObject.put("states",states);
         response.getWriter().println(jsonObject);
     }
 
