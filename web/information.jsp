@@ -46,9 +46,8 @@
 <!--自定义alert-->
 <script src="${pageContext.request.contextPath}/resources/js/alert.js"></script>
 <script>
-    $(function () {
-        $(":radio[name='state'][value='" + <%=user.getState()%> + "']").prop("checked", "checked");
-    });
+    //initiate
+    $(":radio[name='state'][value='" + <%=user.getState()%> + "']").prop("checked", "checked");
     $(":radio[name='state']").change(function () {
         $.ajax({
             url:"${pageContext.request.contextPath}/changeState",
@@ -66,7 +65,7 @@
 </script>
 <style>
     .myPanel{
-        width: 50%;
+        width: 30%;
         margin: auto;
         font-size: large;
     }

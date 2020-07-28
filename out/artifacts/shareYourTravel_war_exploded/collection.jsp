@@ -82,7 +82,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
 <!-- 请求第一页  -->
 <script>
-    firstPage('${pageContext.request.contextPath}/collectionCount.get','${pageContext.request.contextPath}/collections.get','uid=<%=request.getParameter("uid")==null?user.getUid():request.getParameter("uid")%>')
+    firstPage('${pageContext.request.contextPath}/collectionCount.get','${pageContext.request.contextPath}/collections.get','uid=<%=request.getParameter("uid")==null?user.getUid():request.getParameter("uid")%>');
 </script>
 <script>
     function cancelCollection(imageID){
@@ -114,13 +114,14 @@
         background-color: #fff;
         border-radius: 4px;
         width: 160px;
-        height: 260px;
+        height: <%=request.getParameter("uid") == null || Integer.parseInt(request.getParameter("uid")) == user.getUid()?260:230%>px;
         position: relative;
     }
     .myButton{
         position: absolute;
         bottom: 1px;
         right: 40px;
+        display: <%=request.getParameter("uid") == null || Integer.parseInt(request.getParameter("uid")) == user.getUid()?"block":"none"%>;
     }
     .myImage{
         width: 150px;

@@ -8,23 +8,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/WEB-INF/classes/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/information.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/information.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/WEB-INF/jspFiles/navigation.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/jspFiles/navigation.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/collection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/collection.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/information.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/information.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/css/bootstrap-switch.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/css/bootstrap-switch.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/css/default.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/css/docs.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/css/highlight.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/js/bootstrap-switch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/js/bootstrap-switch.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/js/highlight.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/resources/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/resources/js/pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/resources/js/pagination.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +240,7 @@
       <workItem from="1595596273888" duration="5319000" />
       <workItem from="1595827569343" duration="14099000" />
       <workItem from="1595861327641" duration="5945000" />
-      <workItem from="1595901376166" duration="30432000" />
+      <workItem from="1595901376166" duration="32280000" />
     </task>
     <servers />
   </component>

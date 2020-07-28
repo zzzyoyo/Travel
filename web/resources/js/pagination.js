@@ -108,16 +108,16 @@ function resultOfPage(page) {
 function displayPictures(pictures) {
     let h = '';
     pictures.forEach(function (pictureElement) {
-        h +='<div class="picture">\n'
+        h +='<div class="picture">\n';
         h +='        <a href="details.jsp?imageID='+ pictureElement.id +'">' +
             '               <img src="resources/travel-images/square-medium/'+ pictureElement.path +'" alt="..." class="myImage">' +
-            '        </a>\n'
-        h +='        <h6><strong>'+ pictureElement.title +'</strong></h6>  <strong>author</strong>:'+ pictureElement.author +'\n'
-        if(requestURL.indexOf('collections') != -1){
+            '        </a>\n';
+        h +='        <h6><strong>'+ pictureElement.title +'</strong></h6>  <strong>author</strong>:'+ pictureElement.author +'\n';
+        if(requestURL.indexOf('collections') !== -1){
             //collections
             h += '<button type="button" class="btn btn-primary btn-sm myButton" onclick="cancelCollection('+ pictureElement.id +')">★取消收藏</button>\n'
         }
-        else if(requestURL.indexOf('photos') != -1){
+        else if(requestURL.indexOf('photos') !== -1){
             //photos
             h += '<button type="button" class="btn btn-success btn-sm deleteButton" onclick="confirmDelete('+ pictureElement.id +')">删除</button>\n';
             h += '<button type="button" class="btn btn-warning btn-sm updateButton" onclick="updatePhoto('+ pictureElement.id +')">修改</button>\n';
