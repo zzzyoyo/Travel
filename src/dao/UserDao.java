@@ -2,6 +2,8 @@ package dao;
 
 import domain.User;
 
+import java.util.List;
+
 public class UserDao extends Dao<User>{
 
     public String getPasswordByNameOrEmail(String emailOrName){
@@ -24,5 +26,29 @@ public class UserDao extends Dao<User>{
     public boolean save(User user){
         String sql = "INSERT INTO traveluser (UserName, Email, Pass) VALUES (?,?,?)";
         return update(sql,user.getUsername(),user.getEmail(),user.getPassword());
+    }
+
+    public List<User> getFriendsByUid(int uid){
+        String sql = "SELECT f.inviteeID uid, u.UserName username, u.State state FROM traveluserfriendship f, " +
+                "traveluser u WHERE f.inviterID = ? AND u.UID = f.inviteeID AND f.state = 1;";
+        return getAll(sql,uid);
+    }
+
+    public List<User> getWaitingInvitationByUid(int uid){
+        String sql = "SELECT f.inviteeID uid, u.UserName username, u.State state FROM traveluserfriendship f, " +
+                "traveluser u WHERE f.inviterID = ? AND u.UID = f.inviteeID AND f.state = 0;";
+        return getAll(sql,uid);
+    }
+
+    public List<User> getRefusedInvitationByUid(int uid){
+        String sql = "SELECT f.inviteeID uid, u.UserName username, u.State state FROM traveluserfriendship f, " +
+                "traveluser u WHERE f.inviterID = ? AND u.UID = f.inviteeID AND f.state = -1;";
+        return getAll(sql,uid);
+    }
+
+    public List<User> getInviteMeByUid(int uid){
+        String sql = "SELECT u.UID uid, u.UserName username, u.State state FROM traveluserfriendship f, traveluser u " +
+                "WHERE f.inviteeID = ? AND u.UID = f.inviterID AND f.state = 0;";
+        return getAll(sql,uid);
     }
 }

@@ -25,7 +25,7 @@
 </head>
 <%
     //该页面需要登录
-    if(!Require.requireLogin(request.getContextPath()+"/collection.jsp",session,response,request)) return;
+    if(!Require.requireLogin(request.getContextPath()+"/information.jsp",session,response,request)) return;
 %>
 <%
     User user = (User)session.getAttribute("userDetails");
