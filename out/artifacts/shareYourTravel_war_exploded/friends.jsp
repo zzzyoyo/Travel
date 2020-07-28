@@ -113,12 +113,10 @@
         $("ul li").removeClass("active");
         $(this).addClass("active");
     });
-</script>
-<script>
     //获取好友信息
     function getMyFriends() {
         $.ajax({
-            url:"getMyFriends.friend",
+            url:"${pageContext.request.contextPath}/getMyFriends.friend",
             type:"POST",
             data:{
                 uid:<%=user.getUid()%>
@@ -136,7 +134,7 @@
     }
     function getMyInvitation() {
         $.ajax({
-            url:"getMyInvitation.friend",
+            url:"${pageContext.request.contextPath}/getMyInvitation.friend",
             type:"POST",
             data:{
                 uid:<%=user.getUid()%>
@@ -154,7 +152,7 @@
     }
     function getInviteMe() {
         $.ajax({
-            url:"getInviteMe.friend",
+            url:"${pageContext.request.contextPath}/getInviteMe.friend",
             type:"POST",
             data:{
                 uid:<%=user.getUid()%>
@@ -204,45 +202,43 @@
     function agreeInvitation(invitationId) {
         // alert("agree"+invitationId)
         $.ajax({
-            url:"agreeInvitation.friend",
+            url:"${pageContext.request.contextPath}/agreeInvitation.friend",
             type:"POST",
             data:{
                 "invitationId":invitationId
             },
             success(data){
                 if(data.indexOf("success") !== -1){
-                    alertSuccess('You have succeeded to agree the invitation');
+                    alertSuccess('你们已经成为好友啦，快去聊天吧');
                     getInviteMe();
                     getMyFriends();
                 }
-                else alertError("Fail to agree, please try again.")
+                else alertError("通过失败，请重试")
             }
         })
     }
     function refuseInvitation(invitationId) {
         // alert("refuse"+invitationId)
         $.ajax({
-            url:"refuseInvitation.friend",
+            url:"${pageContext.request.contextPath}/refuseInvitation.friend",
             type:"POST",
             data:{
                 "invitationId":invitationId
             },
             success(data){
                 if(data.indexOf("success") !== -1){
-                    alertSuccess('You have succeeded to refuse the invitation');
+                    alertSuccess('你已成功拒绝对方的邀请');
                     getInviteMe();
                 }
-                else alertError("Fail to refuse, please try again.");
+                else alertError("拒绝失败，请重试");
             }
         })
     }
-</script>
-<script>
     //搜索好友，可模糊查询
     function searchUser() {
         let content = $("#searchBar").val();
         $.ajax({
-            url:"searchUser.friend",
+            url:"${pageContext.request.contextPath}/searchUser.friend",
             type:"POST",
             data:{
                 fuzzyUsername:content,
@@ -253,8 +249,8 @@
             success(data){
                 // console.log("search success");
                 if(data.hasOwnProperty("users") && data.hasOwnProperty("states")){
-                    console.log(data.users);
-                    console.log(data.states);
+                    // console.log(data.users);
+                    // console.log(data.states);
                     showUsers(data.users,data.states)
                 }
             }
@@ -297,7 +293,7 @@
     function invite(uid,obj) {
         // alert("invite "+uid);
         $.ajax({
-            url:"invite.friend",
+            url:"${pageContext.request.contextPath}/invite.friend",
             type:"POST",
             data:{
                 inviteeId:uid,
@@ -311,7 +307,7 @@
                     getMyInvitation();
                 }
                 else {
-                    alertError("Fail to invite the user, please try again~")
+                    alertError("邀请失败，请重试~")
                 }
             }
         })

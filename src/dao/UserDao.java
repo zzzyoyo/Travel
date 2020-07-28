@@ -8,8 +8,7 @@ public class UserDao extends Dao<User>{
 
     public String getPasswordByNameOrEmail(String emailOrName){
         String sql = "SELECT Pass FROM traveluser WHERE UserName = ? OR Email = ?";
-        String password = getForValues(sql,emailOrName,emailOrName);
-        return password;
+        return getForValues(sql,emailOrName,emailOrName);
     }
 
     public User getUserByNameOrEmail(String emailOrName){
@@ -31,6 +30,11 @@ public class UserDao extends Dao<User>{
     public List<User> getUserByFuzzyUsername(String fuzzyUsername){
         String sql = "SELECT UID uid, UserName username, Email email, State state FROM traveluser WHERE UserName LIKE ?";
         return getAll(sql,"%"+fuzzyUsername+"%");
+    }
+
+    public User getUserByUid(int uid){
+        String sql = "SELECT UID uid, UserName username, Email email, State state FROM traveluser WHERE UID = ?";
+        return get(sql,uid);
     }
 
     public List<User> getFriendsByUid(int uid){

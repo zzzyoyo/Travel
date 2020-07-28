@@ -113,12 +113,10 @@
         $("ul li").removeClass("active");
         $(this).addClass("active");
     });
-</script>
-<script>
     //获取好友信息
     function getMyFriends() {
         $.ajax({
-            url:"getMyFriends.friend",
+            url:"${pageContext.request.contextPath}/getMyFriends.friend",
             type:"POST",
             data:{
                 uid:<%=user.getUid()%>
@@ -136,7 +134,7 @@
     }
     function getMyInvitation() {
         $.ajax({
-            url:"getMyInvitation.friend",
+            url:"${pageContext.request.contextPath}/getMyInvitation.friend",
             type:"POST",
             data:{
                 uid:<%=user.getUid()%>
@@ -154,7 +152,7 @@
     }
     function getInviteMe() {
         $.ajax({
-            url:"getInviteMe.friend",
+            url:"${pageContext.request.contextPath}/getInviteMe.friend",
             type:"POST",
             data:{
                 uid:<%=user.getUid()%>
@@ -204,7 +202,7 @@
     function agreeInvitation(invitationId) {
         // alert("agree"+invitationId)
         $.ajax({
-            url:"agreeInvitation.friend",
+            url:"${pageContext.request.contextPath}/agreeInvitation.friend",
             type:"POST",
             data:{
                 "invitationId":invitationId
@@ -222,7 +220,7 @@
     function refuseInvitation(invitationId) {
         // alert("refuse"+invitationId)
         $.ajax({
-            url:"refuseInvitation.friend",
+            url:"${pageContext.request.contextPath}/refuseInvitation.friend",
             type:"POST",
             data:{
                 "invitationId":invitationId
@@ -236,13 +234,11 @@
             }
         })
     }
-</script>
-<script>
     //搜索好友，可模糊查询
     function searchUser() {
         let content = $("#searchBar").val();
         $.ajax({
-            url:"searchUser.friend",
+            url:"${pageContext.request.contextPath}/searchUser.friend",
             type:"POST",
             data:{
                 fuzzyUsername:content,
@@ -297,7 +293,7 @@
     function invite(uid,obj) {
         // alert("invite "+uid);
         $.ajax({
-            url:"invite.friend",
+            url:"${pageContext.request.contextPath}/invite.friend",
             type:"POST",
             data:{
                 inviteeId:uid,
