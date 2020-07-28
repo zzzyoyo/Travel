@@ -28,10 +28,15 @@ public class UserDao extends Dao<User>{
         return update(sql,user.getUsername(),user.getEmail(),user.getPassword());
     }
 
+    public List<User> getUserByFuzzyUsername(String fuzzyUsername){
+        String sql = "SELECT UID uid, UserName username, Email email, State state FROM traveluser WHERE UserName LIKE ?";
+        return getAll(sql,"%"+fuzzyUsername+"%");
+    }
+
     public List<User> getFriendsByUid(int uid){
-        String sql = "SELECT f.inviteeID uid, u.UserName username, u.State state FROM traveluserfriendship f, " +
-                "traveluser u WHERE f.inviterID = ? AND u.UID = f.inviteeID AND f.state = 1;";
-        return getAll(sql,uid);
+        String sql = "SELECT u.UID uid, u.UserName username, u.State state FROM traveluserfriendship f, " +
+                "traveluser u ((f.inviterID = ? AND u.UID = f.inviteeID) OR (f.inviteeID = ? AND u.UID = f.inviterID)) AND f.state = 1;";
+        return getAll(sql,uid,uid);
     }
 
     public List<User> getWaitingInvitationByUid(int uid){

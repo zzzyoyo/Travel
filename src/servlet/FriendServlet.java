@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "FriendServlet",urlPatterns = {"*.friend"})
@@ -39,7 +40,7 @@ public class FriendServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 
     private void getMyFriends(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -85,6 +86,50 @@ public class FriendServlet extends HttpServlet {
         int invitationId = Integer.parseInt(request.getParameter("invitationId"));
         InvitationDao invitationDao = new InvitationDao();
         if(invitationDao.refuseInvitation(invitationId)){
+            response.getWriter().println("success");
+        }
+        else {
+            response.getWriter().println("error");
+        }
+    }
+
+    private void searchUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String fuzzyUsername = request.getParameter("fuzzyUsername");
+        int uid = Integer.parseInt(request.getParameter("uid"));
+        UserDao userDao = new UserDao();
+        List<User> users = userDao.getUserByFuzzyUsername(fuzzyUsername);
+        InvitationDao invitationDao = new InvitationDao();
+        List<Integer> friendIds = invitationDao.getFriendIdsWithUid(uid);
+        System.out.println("friendIds:"+friendIds);
+        List<Integer> waitingIds = invitationDao.getWaitingIdsWithUid(uid);
+        System.out.println("waitingIds:"+waitingIds);
+        List<Integer> states = new ArrayList<>(users.size());
+        for(User user:users){
+            int userId = user.getUid();
+            if(waitingIds.contains(userId)){
+                states.add(0);
+            }
+            else if(friendIds.contains(userId)){
+                states.add(1);
+            }
+            else if(uid == userId){
+                states.add(2);
+            }
+            else {
+                states.add(3);//只有3才可以添加好友
+            }
+        }
+        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("users",users);
+//        jsonObject.put("states",states);
+        response.getWriter().println(jsonObject);
+    }
+
+    public void invite(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int inviteeId = Integer.parseInt(request.getParameter("inviteeId"));
+        int inviterId = Integer.parseInt(request.getParameter("inviterId"));
+        InvitationDao invitationDao = new InvitationDao();
+        if(invitationDao.inviteUser(inviterId,inviteeId)){
             response.getWriter().println("success");
         }
         else {

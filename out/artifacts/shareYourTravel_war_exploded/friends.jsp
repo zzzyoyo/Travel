@@ -74,26 +74,16 @@
     </div>
 </div>
 <div class="searchUser input-group">
-    <input type="text" class="form-control" placeholder="Search for new friends" name="content">
+    <input type="text" class="form-control" placeholder="Search for new friends" id="searchBar">
     <span class="input-group-btn">
-        <button class="btn btn-default" type="button">
+        <button class="btn btn-default" type="button" onclick="searchUser()">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Go!
         </button>
     </span>
 </div>
-<br>
 <div id="userResults">
-    <table class="table table-bordered table-hover">
-        <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Invite</th>
-        </tr>
-        <tr>
-            <td>January</td>
-            <td>$100</td>
-            <td>+</td>
-        </tr>
+    <table class="table table-striped table-hover table-border">
+        <!-- 搜索结果 -->
     </table>
 </div>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -123,6 +113,8 @@
         $("ul li").removeClass("active");
         $(this).addClass("active");
     });
+</script>
+<script>
     //获取好友信息
     function getMyFriends() {
         $.ajax({
@@ -246,6 +238,87 @@
     }
 </script>
 <script>
+    //搜索好友，可模糊查询
+    function searchUser() {
+        let content = $("#searchBar").val();
+        $.ajax({
+            url:"searchUser.friend",
+            type:"POST",
+            data:{
+                fuzzyUsername:content,
+                uid:<%=user.getUid()%>
+            },
+            dataType:"json",    //数据类型为json格式
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            success(data){
+                // console.log("search success");
+                if(data.hasOwnProperty("users") && data.hasOwnProperty("states")){
+                    console.log(data.users);
+                    console.log(data.states);
+                    showUsers(data.users,data.states)
+                }
+            }
+        })
+    }
+    //展示搜索结果
+    function showUsers(users,states) {
+        let usersTable = $("#userResults table");
+        usersTable.empty();
+        usersTable.css("display","table");
+        usersTable.append('<tr>\n' +
+            '            <th>用户名</th>\n' +
+            '            <th>邮箱</th>\n' +
+            '            <th>状态</th>\n' +
+            '        </tr>');
+        for(let i = 0;i < users.length;i++){
+            let user = users[i];
+            let h = '<tr>\n' +
+                '            <td>'+ user.username +'</td>\n' +
+                '            <td>'+ user.email +'</td>\n' +
+                '            <td>';
+            let state = states[i];
+            if(state === 0){
+                h += '已邀请，等待回复中';
+            }
+            else if(state === 1){
+                h += '已添加为好友';
+            }
+            else if(state === 2){
+                h += '自己';
+            }
+            else {
+                h += '<a onclick="invite('+ user.uid +',this)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>邀请为好友</a>';
+            }
+            h += '</td></tr>';
+            usersTable.append(h);
+        }
+    }
+    //邀请好友
+    function invite(uid,obj) {
+        // alert("invite "+uid);
+        $.ajax({
+            url:"invite.friend",
+            type:"POST",
+            data:{
+                inviteeId:uid,
+                inviterId:<%=user.getUid()%>
+            },
+            success(data){
+                // console.log("search success");
+                if(data.indexOf('success') != -1){
+                    alertSuccess('邀请成功!');
+                    $(obj).parents("tr").remove();
+                    getMyInvitation();
+                }
+                else {
+                    alertError("Fail to invite the user, please try again~")
+                }
+            }
+        })
+    }
+</script>
+<script>
+    //initiate
     getMyFriends();
     getMyInvitation();
     getInviteMe();
@@ -260,8 +333,14 @@
         margin: auto;
     }
     #userResults table{
-        width: 30%;
         margin: auto;
+        display: none;
+    }
+    #userResults{
+        height: 70%;
+        overflow: scroll;
+        margin: 10px;
+        padding: 0 30px ;
     }
 </style>
 </body>

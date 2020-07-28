@@ -9,7 +9,10 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Dao<T> {
@@ -42,6 +45,30 @@ public class Dao<T> {
             JdbcUtils.release(connection,null,null);
         }
         return null;
+    }
+
+    public <E> List<E> getAllValues(String sql, Object ... args){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Object> entities = new ArrayList<>();
+        try {
+            connection =  JdbcUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            for(int i = 1; i <= args.length; i++){
+                preparedStatement.setObject(i,args[i-1]);
+            }
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                entities.add(resultSet.getObject(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtils.release(connection,preparedStatement,resultSet);
+        }
+        return (List<E>) entities;
     }
 
     /**
