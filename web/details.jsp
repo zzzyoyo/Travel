@@ -73,6 +73,29 @@
             }
         }
     %>
+    <div class="comment">
+        <h2>评论区</h2>
+        <strong style="margin-left: 60%">排序方式：</strong>
+        <input type="radio" name="sort" value="hot" checked="checked">热度
+        <input type="radio" name="sort" value="recentUpdate">时间
+        <!---评论区------>
+        <ul class=" pre-scrollable">
+            <!--评论-->
+        </ul>
+        <!---如果登录则可以写评论------>
+        <c:if test="<%=isLogin%>">
+            <form onkeypress="return event.keyCode !== 13;">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="写下您的评论...." id="write">
+                    <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onclick="sendComment()">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>Send!
+                </button>
+            </span>
+                </div>
+            </form>
+        </c:if>
+    </div>
     <div class="information">
         <table style="word-break: break-word">
             <tr>
@@ -180,11 +203,77 @@
                 }
             })
         }
+        function sendComment() {
+            $.ajax({
+                url:"${pageContext.request.contextPath}/send.comment",
+                type:'POST',
+                data:{
+                    'commenterID':<%=user.getUid()%>,
+                    'imageID':<%=id%>,
+                    'message':$("#write").val()
+                },
+                success(data){
+                    if(data.indexOf('success') !== -1){
+                        //刷新评论区:应该重新从数据库获取还是直接append？
+                        loadAllComments();
+                        $("#write").val("");
+                    }
+                }
+            })
+        }
+        $(document).keyup(function(event){
+            if(event.keyCode ==13){
+                sendComment();
+            }
+        });
     </script>
 </c:if>
 <script>
-
-
+    function loadAllComments() {
+        $.ajax({
+            url:'${pageContext.request.contextPath}/loadAllComments.comment',
+            type:'POST',
+            dataType:"json",    //数据类型为json格式
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            data:{
+                'sort':$("input[name='sort']:checked").val(),
+                'imageID':<%=id%>
+            },
+            success(data){
+                if(data.hasOwnProperty('comments')){
+                    console.log(data.comments);
+                    renderAllComments(data.comments);
+                }
+            }
+        })
+    }
+    function addHot(commentID) {
+        $.ajax({
+            url:"${pageContext.request.contextPath}/addHot.comment",
+            data:{
+                "commentID":commentID
+            },
+            type:'POST',
+            success(data){
+                if(data.indexOf('success')!==-1){
+                    alertInfo('作者非常感谢您的欣赏和点赞！');
+                    loadAllComments();
+                }
+            }
+        })
+    }
+    function renderAllComments(comments) {
+        let commentUl = $(".comment ul");
+        commentUl.empty();
+        comments.forEach(function (comment) {
+            commentUl.append('<li>\n' +
+                '                <h4>'+ comment.commenter +' <small>'+ comment.commentTime +' </small>' +
+                '<span class="badge" onclick="addHot('+ comment.commentID +')">' +
+                '<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>'+ comment.hot +'</span></h4>\n' +
+                 comment.commentContent +
+                '            </li>');
+        })
+    }
     function scale_up(){
         let mask = document.getElementById("mask");
         let big = document.getElementById("big");
@@ -230,6 +319,10 @@
         let big = document.getElementById("big");
         big.style.display="none";
     }
+    loadAllComments();
+    $("input[name='sort']").change(function () {
+        loadAllComments();
+    });
 </script>
 <style type="text/css">
     .information{
@@ -286,6 +379,7 @@
         overflow: hidden;
         border: solid 5px black;
         background-color: white;
+        z-index: 1000;
     }
     .big div{
         position: relative;
@@ -304,6 +398,20 @@
     .myButton{
         float: right;
         margin-top: 10px
+    }
+    .comment{
+        width: 40%;
+        float: left;
+        background-color: #1b2838;
+        color: #ebebeb;
+        margin-left: 20px;
+        border-radius: 20px;
+    }
+    h4 small {
+         color: #56707f;
+    }
+    .comment h2{
+        text-align: center;
     }
 </style>
 </body>

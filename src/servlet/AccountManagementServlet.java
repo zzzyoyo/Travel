@@ -11,6 +11,8 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "AccountManagementServlet",urlPatterns = {"/register","/login","/logout","/changeState"})
 public class AccountManagementServlet extends HttpServlet {
@@ -48,15 +50,33 @@ public class AccountManagementServlet extends HttpServlet {
         String md5Password = CryptUtils.GetMD5Code(userDao.getPasswordByNameOrEmail(emailOrName));//为了让之前的账号也能登陆
         if(password.equals(queryPassword)||password.equals(md5Password)){
             //login success
-            User user = userDao.getUserByNameOrEmail(emailOrName);
+            User user = userDao.getUserByNameOrEmail(emailOrName);;
             HttpSession session= request.getSession();
             session.setAttribute("userDetails",user);
             String toPath = (String) session.getAttribute("toPath");
             session.removeAttribute("toPath");
+
+            //获取当前系统所有的在线用户
+            Map<Integer,HttpSession> onlineUserList=(Map<Integer, HttpSession>)request.getSession().getServletContext().getAttribute("ONLINE_USERS");
+            if(onlineUserList==null){
+                onlineUserList = new HashMap<>();
+            }
+            //如果当前用户存在其他session信息,那么就让旧的session失效，保证同时只有一人登录
+            HttpSession oldSession=onlineUserList.get(user.getUid());
+            if(oldSession!=null){
+                oldSession.invalidate();
+                onlineUserList.remove(user.getUid());
+            }
+            //记录新的session,并记录到所有用户下
+            onlineUserList.put(user.getUid(), session);
+            request.getSession().getServletContext().setAttribute("ONLINE_USERS",onlineUserList);
+
             //持久化session
             Cookie cookie = new Cookie("JSESSIONID",session.getId());
             cookie.setMaxAge(60*30);//30min
             response.addCookie(cookie);
+
+            //重定向到要去的页面
             response.sendRedirect(toPath == null?request.getContextPath():toPath);
         }
         else {
@@ -90,7 +110,13 @@ public class AccountManagementServlet extends HttpServlet {
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        request.getSession().invalidate();
+        Map<Integer,HttpSession> onlineUserList=(Map<Integer, HttpSession>)request.getSession().getServletContext().getAttribute("ONLINE_USERS");
+        HttpSession session = request.getSession();
+        if(onlineUserList != null && session.getAttribute("userDetails") != null){
+            User user = (User)session.getAttribute("userDetails");
+            onlineUserList.remove(user.getUid());
+            session.invalidate();
+        }
         response.sendRedirect(request.getContextPath());
     }
 

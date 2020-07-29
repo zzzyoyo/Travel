@@ -82,7 +82,7 @@
       <div class="my_container">
         <c:forEach var="picture" items="<%=recent%>">
           <div class="holder">
-            <a href="details.jsp?imageID=${picture.getId()}"><img src="${pageContext.request.contextPath}/resources/travel-images/large/${picture.getPath()}"> </a>
+            <a href="details.jsp?imageID=${picture.getId()}"><img class="myImage" src="${pageContext.request.contextPath}/resources/travel-images/large/${picture.getPath()}"> </a>
             <ul>
               <li class="work">※${picture.getTitle()}※</li>
               <li class="artist"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span>by ${picture.getAuthor()}</li>
@@ -160,6 +160,10 @@
     .hot-works ul li.artist{
       font-size:20px;
       font-style: italic;
+    }
+    .myImage{
+      width: 450px;
+      height: 450px;
     }
   </style>
   </body>
