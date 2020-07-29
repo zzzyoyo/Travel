@@ -38,6 +38,9 @@
             <strong style="margin-left: 30px">排序方式：</strong>
             <input type="radio" name="sort" value="hot" checked="checked">热度
             <input type="radio" name="sort" value="recentUpdate">时间
+            <strong style="margin-left: 30px">相似度：</strong><span id="similarNumber">100</span>%
+            <input type="range" name="similar" value="100" min="0"  max="100" id="mySlider">
+            <span>0%</span><span style="float: right">100%</span>
         </div>
     </form>
 </div>
@@ -57,7 +60,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 <!-- 加载分页脚本  -->
 <script src="${pageContext.request.contextPath}/resources/js/pagination.js"></script>
-
+<script>
+    $("#mySlider").change(function () {
+        $("#similarNumber").html(this.value);
+    })
+</script>
 <style type="text/css">
     .picture{
         float: left;

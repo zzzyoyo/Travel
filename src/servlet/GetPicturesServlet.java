@@ -61,8 +61,9 @@ public class GetPicturesServlet extends HttpServlet {
     private void searchResultCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String content = request.getParameter("content");
         String filter = request.getParameter("filter");
+        int similar = Integer.parseInt(request.getParameter("similar"));
         PictureDao pictureDao = new PictureDao();
-        response.getWriter().println(pictureDao.getCountWithFuzzyContent(content,filter));
+        response.getWriter().println(pictureDao.getCountWithFuzzyContent(content,filter,similar));
     }
 
     private void searchResults(HttpServletRequest request, HttpServletResponse response) throws IOException{
@@ -72,8 +73,9 @@ public class GetPicturesServlet extends HttpServlet {
         String sort = request.getParameter("sort");
         int page = Integer.parseInt(request.getParameter("page"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        int similar = Integer.parseInt(request.getParameter("similar"));
         PictureDao pictureDao = new PictureDao();
-        List<Picture> pictures = pictureDao.getPicturesByFuzzyContent(content,filter,sort,page,pageSize);
+        List<Picture> pictures = pictureDao.getPicturesByFuzzyContent(content,filter,sort,page,pageSize,similar);
         jsonObject.put("pictures",pictures);
 //        System.out.println(pictures);
         response.getWriter().println(jsonObject);
