@@ -256,7 +256,7 @@
             type:'POST',
             success(data){
                 if(data.indexOf('success')!==-1){
-                    alertInfo('作者非常感谢您的欣赏和点赞！');
+                    alertInfo('评论者非常感谢您的欣赏和点赞！');
                     loadAllComments();
                 }
             }
@@ -388,6 +388,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        max-width: 1024px;
     }
     #description{
         font-size: 20px;

@@ -3,6 +3,7 @@ package dao;
 import domain.DetailedPicture;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -30,8 +31,9 @@ public class DetailedPictureDao extends Dao<DetailedPicture> {
                 "CityCode = ?, PATH = ?, RecentUpdate = ? WHERE ImageID = ?";
 //        System.out.println(new Date());
 //        System.out.println(new Timestamp(new Date().getTime()));
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return update(sql,detailedPicture.getTitle(),detailedPicture.getDescription(),detailedPicture.getTheme(),
-                detailedPicture.getCountryISO(),detailedPicture.getCityId(),detailedPicture.getPath(),new Timestamp(new Date().getTime()),detailedPicture.getId());
+                detailedPicture.getCountryISO(),detailedPicture.getCityId(),detailedPicture.getPath(),formatter.format(new Date()),detailedPicture.getId());
     }
 
     /**

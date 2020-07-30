@@ -73,9 +73,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputDescription">简介</label>
-            <textarea class="form-control" id="exampleInputDescription" placeholder="Description" rows="3" name="description" required>
-                ${detailedPicture.getDescription()}
-            </textarea>
+            <textarea class="form-control" id="exampleInputDescription" placeholder="Description" rows="3" name="description" required>${detailedPicture.getDescription()}</textarea>
         </div>
         <div class="form-group">
             <label for="countries">国家</label>
