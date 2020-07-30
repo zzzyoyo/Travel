@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +215,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -252,6 +253,7 @@
       <workItem from="1595901376166" duration="35762000" />
       <workItem from="1595985282540" duration="3096000" />
       <workItem from="1596005557035" duration="27222000" />
+      <workItem from="1596078350887" duration="1711000" />
     </task>
     <servers />
   </component>
@@ -375,14 +377,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1595145805153" />
-    <state x="35" y="77" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1595388803245">
+    <state x="35" y="77" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596080343745">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="35" y="77" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1595388803245" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1595985314948">
+    <state x="35" y="77" width="1095" height="495" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1596080343745" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1596078350841">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1595985314948" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1596078350841" />
     <state x="28" y="0" key="new project wizard" timestamp="1595992514067">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
