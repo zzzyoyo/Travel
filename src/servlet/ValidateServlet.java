@@ -55,6 +55,21 @@ public class ValidateServlet extends HttpServlet {
         response.getWriter().println(isValid);
     }
 
+
+    private void emailUsed(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String email = request.getParameter("email");
+        UserDao userDao = new UserDao();
+        Map<String,String> map = new HashMap<>();
+        if(userDao.getCountWithEmail(email)>0){
+            map.put("valid","false");
+        }
+        else {
+            map.put("valid","true");
+        }
+        String isValid = JSON.toJSONString(map);
+        response.getWriter().println(isValid);
+    }
+
     private void checkCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String captcha = request.getParameter("captcha");
         String checkCode = (String) request.getSession().getAttribute("checkCode");//从服务器端的session中取出验证码

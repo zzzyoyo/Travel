@@ -22,6 +22,11 @@ public class UserDao extends Dao<User>{
         return getForValues(sql,name);
     }
 
+    public long getCountWithEmail(String email) {
+        String sql = "SELECT count(*) FROM traveluser WHERE Email = ?";
+        return getForValues(sql,email);
+    }
+
     public boolean save(User user){
         String sql = "INSERT INTO traveluser (UserName, Email, Pass) VALUES (?,?,?)";
         return update(sql,user.getUsername(),user.getEmail(),user.getPassword());

@@ -101,6 +101,14 @@ public class AccountManagementServlet extends HttpServlet {
             session.setAttribute("userDetails",user);
             String toPath = (String) session.getAttribute("toPath");
             session.removeAttribute("toPath");
+
+            //获取当前系统所有的在线用户
+            Map<Integer,HttpSession> onlineUserList=(Map<Integer, HttpSession>)request.getSession().getServletContext().getAttribute("ONLINE_USERS");
+            if(onlineUserList==null){
+                onlineUserList = new HashMap<>();
+            }
+            //加入该session
+            onlineUserList.put(user.getUid(),session);
             response.sendRedirect(toPath == null?request.getContextPath():toPath);
         }
         else {

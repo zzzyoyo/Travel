@@ -113,6 +113,10 @@
                     },
                     emailAddress: {
                         message: '邮箱地址格式有误'
+                    },
+                    remote: {   //后台验证，查询邮箱是否用过
+                        url: '${pageContext.request.contextPath}/emailUsed.validate',
+                        message: '此邮箱已被使用'
                     }
                 }
             },

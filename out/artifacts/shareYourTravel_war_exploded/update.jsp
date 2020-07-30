@@ -87,7 +87,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputFile">选择图片</label>
-            <input type="file" id="exampleInputFile" name="path" ${detailedPicture!=null?"":"required"} accept="image/jpg, image/png, image/jpeg, image/gif">
+            <input type="file" id="exampleInputFile" name="path" ${detailedPicture!=null?"":"required"} accept="image/jpg, image/png, image/jpeg, image/gif" onchange="showSelectedImg(this)">
             <c:choose>
                 <c:when test="${detailedPicture==null}">
                     <p class="help-block">请选择一张图片</p>
@@ -96,6 +96,7 @@
                     <p class="help-block">如不需要修改图片文件可以选择不选</p>
                 </c:otherwise>
             </c:choose>
+            <img id="photoImg" width="100%">
         </div>
         <button type="submit" class="btn btn-default">${detailedPicture==null?"上传":"修改"}</button>
     </form>
@@ -160,8 +161,15 @@
             }
         })
     }
-</script>
-<script>
+    function showSelectedImg(obj) {
+        let file = obj.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {    //成功读取文件
+            let img = document.getElementById("photoImg");
+            img.src = e.target.result;   //或 img.src = this.result / e.target == this
+        };
+    }
     loadAllCountries();
     //jQuery获取不到动态添加的元素，不能用$('#countries').val()来获取
     loadCities(selectedCountry||'AD');
