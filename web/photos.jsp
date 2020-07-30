@@ -94,6 +94,9 @@
                     display(currentPage);
                     alertSuccess("删除成功")
                 }
+                else {
+                    alertError('删除失败，请重试')
+                }
                 console.log(data);
             }
         })

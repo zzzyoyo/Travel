@@ -111,8 +111,13 @@ public class UpdatePictureServlet extends HttpServlet {
 //        System.out.println("delete");
         int imageID = Integer.parseInt(request.getParameter("imageID"));
         PictureDao pictureDao = new PictureDao();
-        if(pictureDao.deletePictureByImageID(imageID)){
+        String fileName = pictureDao.getPathByImageID(imageID);
+        if(pictureDao.deletePictureByImageID(imageID) &&
+                PictureFileOperation.delete(request.getServletContext().getRealPath("/"),fileName)){
             response.getWriter().println("success");
+        }
+        else {
+            response.getWriter().println("error");
         }
     }
 

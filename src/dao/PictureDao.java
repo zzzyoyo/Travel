@@ -132,6 +132,11 @@ public class PictureDao extends Dao<Picture> {
         return update(sql,imageID);
     }
 
+    public String getPathByImageID(int imageID){
+        String sql = "SELECT PATH FROM travelimage WHERE ImageID = ?;";
+        return getForValues(sql,imageID);
+    }
+
     private List<String> fuzzyString(String initString,int similar){
         List<String> stringList = new ArrayList<>();
         int length = (int)Math.ceil(similar*initString.length()/100.0) ;

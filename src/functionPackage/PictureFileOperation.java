@@ -33,10 +33,12 @@ public class PictureFileOperation {
         for(int i = 0; i < paths.length; i++){
             File file = new File(contextRealPath+path+paths[i]+"\\"+fileName);
             if (file.isFile() && file.exists()){
-                file.delete();
+                if(!file.delete()){
+                    return false;
+                }
             }
             else {
-                System.out.println("no file or path is not file");
+                System.out.println("no file or path is not file"+file.toString());
                 return false;
             }
         }

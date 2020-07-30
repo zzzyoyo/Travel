@@ -8,7 +8,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/photos.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/PictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/PictureDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/photos.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +89,19 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat7">
+    <configuration name="Dao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dao.Dao" />
+      <module name="shareYourTravel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="InvitationDao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dao.InvitationDao" />
       <module name="shareYourTravel" />
@@ -196,6 +214,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Dao" />
         <item itemvalue="Application.PictureDao" />
         <item itemvalue="Application.InvitationDao" />
         <item itemvalue="Application.PictureFileOperation" />
@@ -215,7 +234,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -253,7 +272,7 @@
       <workItem from="1595901376166" duration="35762000" />
       <workItem from="1595985282540" duration="3096000" />
       <workItem from="1596005557035" duration="27222000" />
-      <workItem from="1596078350887" duration="1711000" />
+      <workItem from="1596078350887" duration="4336000" />
     </task>
     <servers />
   </component>
@@ -277,70 +296,70 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="98" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1595992531638" />
-    <state width="1237" height="151" key="GridCell.Tab.0.bottom" timestamp="1596039754718">
+    <state width="845" height="135" key="GridCell.Tab.0.bottom" timestamp="1596083497427">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="151" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596039754718" />
-    <state width="1237" height="151" key="GridCell.Tab.0.center" timestamp="1596039754718">
+    <state width="845" height="135" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596083497427" />
+    <state width="845" height="135" key="GridCell.Tab.0.center" timestamp="1596083497427">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="151" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596039754718" />
-    <state width="1237" height="151" key="GridCell.Tab.0.left" timestamp="1596039754718">
+    <state width="845" height="135" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596083497427" />
+    <state width="845" height="135" key="GridCell.Tab.0.left" timestamp="1596083497427">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="151" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596039754718" />
-    <state width="1237" height="151" key="GridCell.Tab.0.right" timestamp="1596039754718">
+    <state width="845" height="135" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596083497427" />
+    <state width="845" height="135" key="GridCell.Tab.0.right" timestamp="1596083497427">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="151" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596039754718" />
-    <state width="845" height="311" key="GridCell.Tab.1.bottom" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596083497427" />
+    <state width="845" height="135" key="GridCell.Tab.1.bottom" timestamp="1596083497279">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="311" key="GridCell.Tab.1.center" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596083497279" />
+    <state width="845" height="135" key="GridCell.Tab.1.center" timestamp="1596083497279">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="311" key="GridCell.Tab.1.left" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1596083497279" />
+    <state width="845" height="135" key="GridCell.Tab.1.left" timestamp="1596083497279">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="311" key="GridCell.Tab.1.right" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1596083497279" />
+    <state width="845" height="135" key="GridCell.Tab.1.right" timestamp="1596083497279">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="311" key="GridCell.Tab.2.bottom" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1596083497279" />
+    <state width="845" height="135" key="GridCell.Tab.2.bottom" timestamp="1596083497280">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="311" key="GridCell.Tab.2.center" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596083497280" />
+    <state width="845" height="135" key="GridCell.Tab.2.center" timestamp="1596083497279">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="311" key="GridCell.Tab.2.left" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1596083497279" />
+    <state width="845" height="135" key="GridCell.Tab.2.left" timestamp="1596083497279">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="311" key="GridCell.Tab.2.right" timestamp="1596039754714">
+    <state width="845" height="135" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1596083497279" />
+    <state width="845" height="135" key="GridCell.Tab.2.right" timestamp="1596083497280">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="311" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1596039754714" />
-    <state width="845" height="325" key="GridCell.Tab.3.bottom" timestamp="1596038411743">
+    <state width="845" height="135" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1596083497280" />
+    <state width="845" height="135" key="GridCell.Tab.3.bottom" timestamp="1596083497280">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="325" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596038411743" />
-    <state width="845" height="325" key="GridCell.Tab.3.center" timestamp="1596038411743">
+    <state width="845" height="135" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596083497280" />
+    <state width="845" height="135" key="GridCell.Tab.3.center" timestamp="1596083497280">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="325" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1596038411743" />
-    <state width="845" height="325" key="GridCell.Tab.3.left" timestamp="1596038411743">
+    <state width="845" height="135" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1596083497280" />
+    <state width="845" height="135" key="GridCell.Tab.3.left" timestamp="1596083497280">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="325" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1596038411743" />
-    <state width="845" height="325" key="GridCell.Tab.3.right" timestamp="1596038411743">
+    <state width="845" height="135" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1596083497280" />
+    <state width="845" height="135" key="GridCell.Tab.3.right" timestamp="1596083497280">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="845" height="325" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1596038411743" />
+    <state width="845" height="135" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1596083497280" />
     <state width="845" height="284" key="GridCell.Tab.7.bottom" timestamp="1596015676497">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -397,63 +416,36 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java</url>
-          <line>40</line>
-          <properties class="servlet.AccountManagementServlet" method="login">
+          <url>file://$PROJECT_DIR$/src/dao/PictureDao.java</url>
+          <line>134</line>
+          <properties class="dao.PictureDao" method="getPathByImageID">
             <option name="EMULATED" value="true" />
           </properties>
-          <option name="timeStamp" value="23" />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
+          <line>109</line>
+          <properties class="servlet.UpdatePictureServlet" method="delete">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/servlet/UpdatePictureServlet.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/dao/Dao.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
