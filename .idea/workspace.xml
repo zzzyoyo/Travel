@@ -8,12 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ecb4f209-a9df-4271-8e92-1ce1ed3e30ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shareYourTravel_war_exploded/update.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/ValidateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/ValidateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/update.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -273,7 +268,7 @@
       <workItem from="1595901376166" duration="35762000" />
       <workItem from="1595985282540" duration="3096000" />
       <workItem from="1596005557035" duration="27222000" />
-      <workItem from="1596078350887" duration="12142000" />
+      <workItem from="1596078350887" duration="13137000" />
     </task>
     <servers />
   </component>

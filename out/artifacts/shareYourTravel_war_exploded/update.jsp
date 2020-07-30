@@ -56,7 +56,7 @@
             <h3>修改图片</h3>
         </c:otherwise>
     </c:choose>
-    <form action="${pageContext.request.contextPath}/${detailedPicture==null?"add":"set"}.update" method="post" enctype="multipart/form-data" onsubmit="return confirm('确定要提交?')">
+    <form action="${pageContext.request.contextPath}/${detailedPicture==null?"add":"set"}.update" method="post" enctype="multipart/form-data" onsubmit="return confirm('请确认信息无误，是否要提交?')">
         <input type="hidden" name="uid" value="<%=user.getUid()%>">
         <c:if test="${detailedPicture!=null}">
             <!--修改页面，需要上传旧的文件名和图片的id-->
