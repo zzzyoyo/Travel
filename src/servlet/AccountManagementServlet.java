@@ -64,7 +64,12 @@ public class AccountManagementServlet extends HttpServlet {
             //如果当前用户存在其他session信息,那么就让旧的session失效，保证同时只有一人登录
             HttpSession oldSession=onlineUserList.get(user.getUid());
             if(oldSession!=null){
-                oldSession.invalidate();
+                try {
+                    oldSession.invalidate();
+                } catch (Exception e) {
+                    System.out.println("session已过期");
+                    e.printStackTrace();
+                }
                 onlineUserList.remove(user.getUid());
             }
             //记录新的session,并记录到所有用户下
