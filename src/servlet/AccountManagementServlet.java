@@ -102,6 +102,7 @@ public class AccountManagementServlet extends HttpServlet {
         User user = new User(username,password,email);
         if(userDao.save(user)){
             //save user successfully
+            user = userDao.getUserByNameOrEmail(username);//要重新获取user，否则放进去的user没有uid
             HttpSession session= request.getSession();
             session.setAttribute("userDetails",user);
             String toPath = (String) session.getAttribute("toPath");
