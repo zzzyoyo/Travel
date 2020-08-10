@@ -20,7 +20,7 @@
         <div class="container-fluid" style="background: black">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <img alt="Brand" src="${pageContext.request.contextPath}/resources/image/logo.PNG">
+                <img alt="Brand" src="${pageContext.request.contextPath}/resources/image/logo.PNG" width="50px">
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
