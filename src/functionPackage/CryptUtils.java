@@ -34,6 +34,7 @@ public class CryptUtils {
      * @throws Exception
      */
     public static String GetMD5Code(String strObj) throws Exception{
+        if(strObj==null) return null;
         MessageDigest md = MessageDigest.getInstance(KEY_MD5);
         // md.digest() 该函数返回值为存放哈希值结果的byte数组
         return byteToString(md.digest(strObj.getBytes()));

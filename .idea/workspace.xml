@@ -57,13 +57,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="57" />
+          <entry key="java" value="101" />
           <entry key="jsp" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="57" />
+          <entry key="JAVA" value="101" />
           <entry key="JSP" value="7" />
         </counts>
       </usages-collector>
@@ -74,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="106" column="54" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
+            <state relative-caret-position="-153">
+              <caret line="104" column="85" selection-start-line="104" selection-start-column="85" selection-end-line="104" selection-end-column="85" />
             </state>
           </provider>
         </entry>
@@ -125,9 +125,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/jspFiles/navigation.jsp" />
         <option value="$PROJECT_DIR$/src/functionPackage/PictureFileOperation.java" />
+        <option value="$PROJECT_DIR$/src/servlet/AccountManagementServlet.java" />
       </list>
     </option>
   </component>
@@ -472,12 +472,12 @@
       <workItem from="1596127212231" duration="784000" />
       <workItem from="1596154604760" duration="2140000" />
       <workItem from="1596159120210" duration="1755000" />
-      <workItem from="1597071621964" duration="1833000" />
+      <workItem from="1597071621964" duration="2106000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8290000" />
+    <option name="totallyTimeSpent" value="8563000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -728,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/AccountManagementServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="106" column="54" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
+        <state relative-caret-position="-153">
+          <caret line="104" column="85" selection-start-line="104" selection-start-column="85" selection-end-line="104" selection-end-column="85" />
         </state>
       </provider>
     </entry>
