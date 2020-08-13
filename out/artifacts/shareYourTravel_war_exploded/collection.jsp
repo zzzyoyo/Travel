@@ -100,6 +100,9 @@
                     display(currentPage);
                     alertSuccess('取消成功')
                 }
+                else {
+                    alertError(data);
+                }
                 console.log(data);
             }
         })

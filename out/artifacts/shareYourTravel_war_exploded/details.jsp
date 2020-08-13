@@ -181,6 +181,9 @@
                         $("#collectButton").css('display','none');
                         alertSuccess("收藏成功！")
                     }
+                    else {
+                        alertError(data);
+                    }
                     console.log(data);
                 }
             })
@@ -198,6 +201,9 @@
                         $("#cancelButton").css('display','none');
                         $("#collectButton").css('display','inline-block');
                         alertSuccess("取消收藏成功！")
+                    }
+                    else {
+                        alertError(data);
                     }
                     console.log(data);
                 }
@@ -217,6 +223,9 @@
                         //刷新评论区:应该重新从数据库获取还是直接append？
                         loadAllComments();
                         $("#write").val("");
+                    }
+                    else {
+                        alertError(data);
                     }
                 }
             })

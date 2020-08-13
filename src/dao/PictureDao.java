@@ -128,8 +128,13 @@ public class PictureDao extends Dao<Picture> {
     }
 
     public boolean deletePictureByImageID(int imageID){
-        String sql = "DELETE FROM travelimage WHERE ImageID = ?";
+        String sql = "DELETE FROM travelimage WHERE ImageID = ? ";
         return update(sql,imageID);
+    }
+
+    public int getAuthorOfImage(int imageID){
+        String sql = "SELECT UID FROM travelimage WHERE ImageID = ?";
+        return getForValues(sql,imageID);
     }
 
     public String getPathByImageID(int imageID){

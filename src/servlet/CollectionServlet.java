@@ -1,6 +1,7 @@
 package servlet;
 
 import dao.FavorDao;
+import domain.User;
 import functionPackage.Require;
 
 import javax.servlet.ServletException;
@@ -47,6 +48,14 @@ public class CollectionServlet extends HttpServlet {
         }
         int uid = Integer.parseInt(request.getParameter("uid"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
+
+        //权限鉴定
+        User user = (User)request.getSession().getAttribute("userDetails");
+        int realUID = user.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to add a collection for user whose uid = "+uid);
+            return;
+        }
         FavorDao favorDao = new FavorDao();
         if(favorDao.addCollection(uid,imageID)){
             response.getWriter().println("success");
@@ -61,6 +70,14 @@ public class CollectionServlet extends HttpServlet {
         }
         int uid = Integer.parseInt(request.getParameter("uid"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
+
+        //权限鉴定
+        User user = (User)request.getSession().getAttribute("userDetails");
+        int realUID = user.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to delete the collection of user whose uid = "+uid);
+            return;
+        }
         FavorDao favorDao = new FavorDao();
         if(favorDao.deleteCollection(uid,imageID)){
             response.getWriter().println("success");

@@ -16,9 +16,14 @@ function firstPage(countURL,picturesURL,data) {
         type: "POST",
         data: data,
         success(data) {
-            count = data;
-            pageCount = Math.ceil(data/pageSize);
-            display(1);
+            if(data.indexOf("don't")!=-1){
+                alertError(data);
+            }
+            else {
+                count = data;
+                pageCount = Math.ceil(data/pageSize);
+                display(1);
+            }
         }
     })
 }
@@ -99,6 +104,9 @@ function resultOfPage(page) {
             if(data.hasOwnProperty("pictures")){
                 // console.log(data.pictures)
                 displayPictures(data.pictures)
+            }
+            else {
+                alertError(data);
             }
         }
     })

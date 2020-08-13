@@ -46,7 +46,7 @@
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
 <jsp:include page="/WEB-INF/jspFiles/navigation.jsp"></jsp:include>
 <p class="text-success" style="text-align: center">${param.successMessage}</p>
-<p class="text-danger">${param.failureMessage}</p>
+<p class="text-danger" style="text-align: center">${param.failureMessage}</p>
 <div style="width: 30%;margin: auto">
     <c:choose>
         <c:when test="${detailedPicture==null}">

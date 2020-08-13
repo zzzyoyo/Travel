@@ -3,8 +3,10 @@ package servlet;
 import dao.DetailedPictureDao;
 import dao.PictureDao;
 import domain.DetailedPicture;
+import domain.User;
 import functionPackage.ReflectionUtils;
 import functionPackage.PictureFileOperation;
+import functionPackage.Require;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -85,7 +87,23 @@ public class UpdatePictureServlet extends HttpServlet {
                 values.put(fieldName,value);
             }
         }
-
+        //等遍历完成在进行验证，因为这是按照form-data的形式传的表单，不能用getParameter获取参数
+        try {
+            int uid = (Integer) values.get("uid");
+            //权限鉴定
+            User currUser = (User)request.getSession().getAttribute("userDetails");
+            int realUID = currUser.getUid();
+            if(realUID != uid){
+                request.getRequestDispatcher("/update.jsp?failureMessage= You don't have the authority to upload as user whose uid = "+uid).forward(request,response);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= NumberFormatException").forward(request,response);
+        } catch (IOException e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= IOException").forward(request,response);
+        }
         if(isSaved){
             DetailedPicture detailedPicture = new DetailedPicture();
             //若 Map 不为空集, 利用反射创建 clazz 对应的对象
@@ -107,10 +125,28 @@ public class UpdatePictureServlet extends HttpServlet {
 
     }
 
-    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("imageID"),request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
 //        System.out.println("delete");
         int imageID = Integer.parseInt(request.getParameter("imageID"));
+        int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User currUser = (User)request.getSession().getAttribute("userDetails");
+        int realUID = currUser.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to delete photo with imageID = "+imageID);
+            return;
+        }
         PictureDao pictureDao = new PictureDao();
+        int authorUid = pictureDao.getAuthorOfImage(imageID);
+        if(authorUid != realUID){
+            response.getWriter().println("You don't have the authority to delete photo with imageID = "+imageID);
+            return;
+        }
         String fileName = pictureDao.getPathByImageID(imageID);
         if(pictureDao.deletePictureByImageID(imageID) &&
                 PictureFileOperation.delete(request.getServletContext().getRealPath("/"),fileName)){
@@ -162,6 +198,30 @@ public class UpdatePictureServlet extends HttpServlet {
                     }
                 }
             }
+        }
+        //遍历完成
+        try {
+            int uid = (Integer) (values.get("uid"));
+            int imageID = (Integer) (values.get("id"));
+            //权限鉴定
+            User currUser = (User)request.getSession().getAttribute("userDetails");
+            int realUID = currUser.getUid();
+            if(realUID != uid){
+                request.getRequestDispatcher("/update.jsp?failureMessage= You don't have the authority to modify the photo of user whose uid = "+uid).forward(request,response);
+                return;
+            }
+            PictureDao pictureDao = new PictureDao();
+            int authorUid = pictureDao.getAuthorOfImage(imageID);
+            if(authorUid != realUID){
+                request.getRequestDispatcher("/update.jsp?failureMessage= You don't have the authority to modify the photo with imageID = "+imageID).forward(request,response);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= NumberFormatException").forward(request,response);
+        } catch (IOException e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= IOException").forward(request,response);
         }
         //全部遍历完之后再进行文件操作
         if( pictureItem.getSize() == 0){

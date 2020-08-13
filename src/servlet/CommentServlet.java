@@ -3,6 +3,7 @@ package servlet;
 import com.alibaba.fastjson.JSONObject;
 import dao.CommentDao;
 import domain.Comment;
+import domain.User;
 import functionPackage.Require;
 
 import javax.servlet.ServletException;
@@ -65,6 +66,14 @@ public class CommentServlet extends HttpServlet {
         String message = request.getParameter("message");
         int uid = Integer.parseInt(request.getParameter("commenterID"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
+
+        //权限鉴定
+        User user = (User)request.getSession().getAttribute("userDetails");
+        int realUID = user.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to replace user whose uid = "+uid+" to comment.");
+            return;
+        }
         CommentDao commentDao = new CommentDao();
         if(commentDao.saveComment(message,uid,imageID)){
             response.getWriter().println("success");

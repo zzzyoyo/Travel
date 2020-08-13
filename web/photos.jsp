@@ -85,7 +85,8 @@
             url:'${pageContext.request.contextPath}/delete.update',
             type:'POST',
             data:{
-                'imageID':imageId
+                'imageID':imageId,
+                'uid':<%=user.getUid()%>
             },
             success(data){
                 if(data.indexOf('success') !== -1){
@@ -95,7 +96,7 @@
                     alertSuccess("删除成功")
                 }
                 else {
-                    alertError('删除失败，请重试')
+                    alertError(data);
                 }
                 console.log(data);
             }

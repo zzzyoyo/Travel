@@ -3,6 +3,7 @@ package servlet;
 import com.alibaba.fastjson.JSONObject;
 import dao.PictureDao;
 import domain.Picture;
+import domain.User;
 import functionPackage.Require;
 
 import javax.servlet.ServletException;
@@ -50,6 +51,14 @@ public class GetPicturesServlet extends HttpServlet {
         int page = Integer.parseInt(request.getParameter("page"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User currUser = (User)request.getSession().getAttribute("userDetails");
+        int realUID = currUser.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to get collections of user whose uid = "+uid);
+            return;
+        }
         PictureDao pictureDao = new PictureDao();
         List<Picture> pictures = pictureDao.getCollectionsByUid(uid,page,pageSize);
         jsonObject.put("pictures",pictures);
@@ -63,12 +72,21 @@ public class GetPicturesServlet extends HttpServlet {
             return;
         }
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User currUser = (User)request.getSession().getAttribute("userDetails");
+        int realUID = currUser.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to get collections of user whose uid = "+uid);
+            return;
+        }
         PictureDao pictureDao = new PictureDao();
         response.getWriter().println(pictureDao.getCollectionCountWithUid(uid));
     }
 
     private void searchResultCount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if(!Require.requireStringNotEmpty(request.getParameter("content"),request.getParameter("filter"),request.getParameter("similar"))){
+        if(!Require.requireStringNotEmpty(request.getParameter("filter"),request.getParameter("similar"))){
+            //content可以为空字符串
             request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
             return;
         }
@@ -80,7 +98,7 @@ public class GetPicturesServlet extends HttpServlet {
     }
 
     private void searchResults(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if(!Require.requireStringNotEmpty(request.getParameter("content"),request.getParameter("filter"),
+        if(!Require.requireStringNotEmpty(request.getParameter("filter"),
                 request.getParameter("sort"),request.getParameter("page"),request.getParameter("pageSize"),
                 request.getParameter("similar"))){
             request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
@@ -106,6 +124,14 @@ public class GetPicturesServlet extends HttpServlet {
             return;
         }
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User currUser = (User)request.getSession().getAttribute("userDetails");
+        int realUID = currUser.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to get photos of user whose uid = "+uid);
+            return;
+        }
         PictureDao pictureDao = new PictureDao();
         response.getWriter().println(pictureDao.getPhotoCountWithUid(uid));
     }
@@ -119,6 +145,14 @@ public class GetPicturesServlet extends HttpServlet {
         int page = Integer.parseInt(request.getParameter("page"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User currUser = (User)request.getSession().getAttribute("userDetails");
+        int realUID = currUser.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to get photos of user whose uid = "+uid);
+            return;
+        }
         PictureDao pictureDao = new PictureDao();
         List<Picture> pictures = pictureDao.getPhotosByUid(uid,page,pageSize);
         jsonObject.put("pictures",pictures);

@@ -52,6 +52,14 @@ public class FriendServlet extends HttpServlet {
         }
         JSONObject jsonObject = new JSONObject();
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User user = (User)request.getSession().getAttribute("userDetails");
+        int realUID = user.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to get friends of user whose uid = "+uid);
+            return;
+        }
         InvitationDao invitationDao = new InvitationDao();
         List<InvitedUser> friends = invitationDao.getFriendsByUid(uid);
         jsonObject.put("myFriends",friends);
@@ -66,6 +74,14 @@ public class FriendServlet extends HttpServlet {
         }
         JSONObject jsonObject = new JSONObject();
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User user = (User)request.getSession().getAttribute("userDetails");
+        int realUID = user.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to get invitations sent by user whose uid = "+uid);
+            return;
+        }
         InvitationDao invitationDao = new InvitationDao();
         List<InvitedUser> invitation = invitationDao.getInvitationByUid(uid);
         jsonObject.put("invitation",invitation);
@@ -79,6 +95,14 @@ public class FriendServlet extends HttpServlet {
         }
         JSONObject jsonObject = new JSONObject();
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User user = (User)request.getSession().getAttribute("userDetails");
+        int realUID = user.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to get invitations sent to user whose uid = "+uid);
+            return;
+        }
         InvitationDao invitationDao = new InvitationDao();
         List<InvitedUser> inviteMe = invitationDao.getInviteMeByUid(uid);
         jsonObject.put("inviteMe",inviteMe);
@@ -122,6 +146,14 @@ public class FriendServlet extends HttpServlet {
         }
         String fuzzyUsername = request.getParameter("fuzzyUsername");
         int uid = Integer.parseInt(request.getParameter("uid"));
+
+        //权限鉴定
+        User currUser = (User)request.getSession().getAttribute("userDetails");
+        int realUID = currUser.getUid();
+        if(realUID != uid){
+            response.getWriter().println("You don't have the authority to search users as user whose uid = "+uid);
+            return;
+        }
         UserDao userDao = new UserDao();
         List<User> users = userDao.getUserByFuzzyUsername(fuzzyUsername);
         InvitationDao invitationDao = new InvitationDao();
@@ -158,6 +190,14 @@ public class FriendServlet extends HttpServlet {
         }
         int inviteeId = Integer.parseInt(request.getParameter("inviteeId"));
         int inviterId = Integer.parseInt(request.getParameter("inviterId"));
+
+        //权限鉴定
+        User currUser = (User)request.getSession().getAttribute("userDetails");
+        int realUID = currUser.getUid();
+        if(realUID != inviterId){
+            response.getWriter().println("You don't have the authority to replace user whose uid = "+inviterId+" to invite friend");
+            return;
+        }
         InvitationDao invitationDao = new InvitationDao();
         if(invitationDao.inviteUser(inviterId,inviteeId)){
             response.getWriter().println("success");

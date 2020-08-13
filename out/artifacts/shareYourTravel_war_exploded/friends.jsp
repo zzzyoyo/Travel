@@ -129,6 +129,9 @@
                      // console.log(data.myFriends);
                     renderMyFriends(data.myFriends)
                 }
+                else {
+                    alertError(data);
+                }
             }
         })
     }
@@ -147,6 +150,9 @@
                     // console.log(data.invitation)
                     renderMyInvitation(data.invitation);
                 }
+                else {
+                    alertError(data);
+                }
             }
         })
     }
@@ -164,6 +170,9 @@
                 if(data.hasOwnProperty("inviteMe")){
                     // console.log(data.inviteMe);
                     renderInviteMe(data.inviteMe);
+                }
+                else {
+                    alertError(data);
                 }
             }
         })
@@ -213,7 +222,9 @@
                     getInviteMe();
                     getMyFriends();
                 }
-                else alertError("通过失败，请重试")
+                else {
+                    alertError(data);
+                }
             }
         })
     }
@@ -230,7 +241,9 @@
                     alertSuccess('你已成功拒绝对方的邀请');
                     getInviteMe();
                 }
-                else alertError("拒绝失败，请重试");
+                else {
+                    alertError(data);
+                }
             }
         })
     }
@@ -253,6 +266,9 @@
                     console.log(data.users);
                     console.log(data.states);
                     showUsers(data.users,data.states)
+                }
+                else {
+                    alertError(data);
                 }
             }
         })
@@ -308,7 +324,7 @@
                     getMyInvitation();
                 }
                 else {
-                    alertError("邀请失败，请重试~")
+                    alertError(data);
                 }
             }
         })
