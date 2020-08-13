@@ -20,10 +20,10 @@
     <!--alert-->
     <link href="${pageContext.request.contextPath}/resources/css/alert.css" rel="stylesheet">
 </head>
-<%
+<%--
     //该页面需要登录
     if(!Require.requireLogin(request.getContextPath()+"/information.jsp",session,response,request)) return;
-%>
+--%>
 <%
     User user = (User)session.getAttribute("userDetails");
 %>

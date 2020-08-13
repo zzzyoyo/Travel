@@ -27,10 +27,10 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-<%
+<%--
     //该页面需要登录
     if(!Require.requireLogin(request.getContextPath()+"/collection.jsp",session,response,request)) return;
-%>
+--%>
 <%
     User user = (User)session.getAttribute("userDetails");
 %>

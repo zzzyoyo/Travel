@@ -21,10 +21,10 @@
     <link href="${pageContext.request.contextPath}/resources/css/alert.css" rel="stylesheet">
 </head>
 <body style="background-image: url(${pageContext.request.contextPath}/resources/image/background.jpg)">
-<%
+<%--
     //该页面需要登录
     if(!Require.requireLogin(request.getContextPath()+"/photos.jsp",session,response,request)) return;
-%>
+--%>
 <%
     User user = (User)session.getAttribute("userDetails");
 %>
