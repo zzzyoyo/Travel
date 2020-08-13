@@ -26,10 +26,10 @@ import java.util.Map;
 @WebServlet(name = "UpdatePictureServlet",urlPatterns = {"*.update"})
 public class UpdatePictureServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //中文乱码问题
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setHeader("Content-type", "text/html;charset=UTF-8");
+//        //中文乱码问题
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        response.setHeader("Content-type", "text/html;charset=UTF-8");
 
         String methodName = request.getServletPath().substring(1,request.getServletPath().indexOf('.'));
         try {

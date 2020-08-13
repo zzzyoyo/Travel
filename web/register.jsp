@@ -102,6 +102,7 @@
                     },
                     remote: {   //后台验证，比如查询用户名是否存在
                         url: '${pageContext.request.contextPath}/usernameUsed.validate',
+                        type:'POST',
                         message: '此用户名已存在'
                     }
                 }
@@ -116,6 +117,7 @@
                     },
                     remote: {   //后台验证，查询邮箱是否用过
                         url: '${pageContext.request.contextPath}/emailUsed.validate',
+                        type:'POST',
                         message: '此邮箱已被使用'
                     }
                 }
@@ -158,6 +160,7 @@
                     },
                     remote: {
                         url:'${pageContext.request.contextPath}/checkCode.validate',
+                        type:'POST',
                         message:'验证码错误'
                     }
                 }

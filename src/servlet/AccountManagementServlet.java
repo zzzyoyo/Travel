@@ -17,10 +17,10 @@ import java.util.Map;
 @WebServlet(name = "AccountManagementServlet",urlPatterns = {"/register","/login","/logout","/changeState"})
 public class AccountManagementServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //中文乱码问题
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setHeader("Content-type", "text/html;charset=UTF-8");
+//        //中文乱码问题
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        response.setHeader("Content-type", "text/html;charset=UTF-8");
 
         String methodName = request.getServletPath().substring(1);
         try {
@@ -94,6 +94,7 @@ public class AccountManagementServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("md5Password");
         String email = request.getParameter("email");
+//        System.out.println(username+" from register");
         if(!Require.requireStringNotEmpty(username,password,email)){
             request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
             return;
@@ -115,6 +116,10 @@ public class AccountManagementServlet extends HttpServlet {
             }
             //加入该session
             onlineUserList.put(user.getUid(),session);
+            request.getSession().getServletContext().setAttribute("ONLINE_USERS",onlineUserList);
+
+            // System.out.println(onlineUserList==request.getServletContext().getAttribute("ONLINE_USERS")); :true
+            //redirect
             response.sendRedirect(toPath == null?request.getContextPath():toPath);
         }
         else {
@@ -130,6 +135,7 @@ public class AccountManagementServlet extends HttpServlet {
             User user = (User)session.getAttribute("userDetails");
             onlineUserList.remove(user.getUid());
             session.invalidate();
+            System.out.println("logout内部");
         }
         response.sendRedirect(request.getContextPath());
     }

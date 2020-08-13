@@ -17,14 +17,15 @@ import java.util.Map;
 @WebServlet(name = "ValidateServlet",urlPatterns = {"*.validate"})
 public class ValidateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(" validate POST!!");
+//        System.out.println(" validate POST!!");
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //中文乱码问题
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setHeader("Content-type", "text/html;charset=UTF-8");
+//        //中文乱码问题
+//        request.setCharacterEncoding("UTF-8");
+//        response.setCharacterEncoding("UTF-8");
+//        response.setHeader("Content-type", "text/html;charset=UTF-8");
 
         String methodName = request.getServletPath().substring(1,request.getServletPath().indexOf('.'));
         try {
@@ -43,6 +44,7 @@ public class ValidateServlet extends HttpServlet {
 
     private void usernameUsed(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
+//        System.out.println(username+" from validate");
         UserDao userDao = new UserDao();
         Map<String,String> map = new HashMap<>();
         if(userDao.getCountWithName(username)>0){

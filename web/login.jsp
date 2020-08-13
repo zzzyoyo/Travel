@@ -97,6 +97,7 @@
                     },
                     remote: {
                         url:'${pageContext.request.contextPath}/checkCode.validate',
+                        type:'POST',
                         message:'验证码错误'
                     }
                 }
