@@ -42,7 +42,7 @@ public class AccountManagementServlet extends HttpServlet {
         String emailOrName = request.getParameter("emailOrName");
         String password = request.getParameter("password");
         if(!Require.requireStringNotEmpty(emailOrName,password)){
-            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            response.sendRedirect(request.getContextPath()+"/login.jsp");
             return;
         }
         UserDao userDao = new UserDao();
@@ -96,7 +96,7 @@ public class AccountManagementServlet extends HttpServlet {
         String email = request.getParameter("email");
 //        System.out.println(username+" from register");
         if(!Require.requireStringNotEmpty(username,password,email)){
-            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            response.sendRedirect(request.getContextPath()+"/register.jsp");
             return;
         }
         UserDao userDao = new UserDao();
