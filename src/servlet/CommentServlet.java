@@ -3,6 +3,7 @@ package servlet;
 import com.alibaba.fastjson.JSONObject;
 import dao.CommentDao;
 import domain.Comment;
+import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,10 +38,15 @@ public class CommentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+//        doPost(request,response);
+        request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= Do not support GET method").forward(request,response);
     }
 
     private void loadAllComments(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(!Require.requireStringNotEmpty(request.getParameter("imageID"),request.getParameter("sort"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String sort = request.getParameter("sort");
         int imageID = Integer.parseInt(request.getParameter("imageID"));
         JSONObject jsonObject = new JSONObject();
@@ -52,6 +58,10 @@ public class CommentServlet extends HttpServlet {
     }
 
     private void send(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(!Require.requireStringNotEmpty(request.getParameter("imageID"),request.getParameter("message"),request.getParameter("commenterID"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String message = request.getParameter("message");
         int uid = Integer.parseInt(request.getParameter("commenterID"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
@@ -65,6 +75,10 @@ public class CommentServlet extends HttpServlet {
     }
 
     private void addHot(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(!Require.requireStringNotEmpty(request.getParameter("commentID"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int commentID = Integer.parseInt(request.getParameter("commentID"));
         CommentDao commentDao = new CommentDao();
         if(commentDao.addHotByCommentID(commentID)){

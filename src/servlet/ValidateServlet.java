@@ -2,6 +2,7 @@ package servlet;
 
 import com.alibaba.fastjson.JSON;
 import dao.UserDao;
+import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +43,11 @@ public class ValidateServlet extends HttpServlet {
     }
 
 
-    private void usernameUsed(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void usernameUsed(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("username"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String username = request.getParameter("username");
 //        System.out.println(username+" from validate");
         UserDao userDao = new UserDao();
@@ -58,7 +63,11 @@ public class ValidateServlet extends HttpServlet {
     }
 
 
-    private void emailUsed(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void emailUsed(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("email"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String email = request.getParameter("email");
         UserDao userDao = new UserDao();
         Map<String,String> map = new HashMap<>();
@@ -72,7 +81,11 @@ public class ValidateServlet extends HttpServlet {
         response.getWriter().println(isValid);
     }
 
-    private void checkCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void checkCode(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("captcha"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String captcha = request.getParameter("captcha");
         String checkCode = (String) request.getSession().getAttribute("checkCode");//从服务器端的session中取出验证码
 //        System.out.println("captcha:"+captcha+"  checkCode:"+checkCode);

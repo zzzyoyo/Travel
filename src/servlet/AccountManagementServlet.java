@@ -43,6 +43,7 @@ public class AccountManagementServlet extends HttpServlet {
         String password = request.getParameter("password");
         if(!Require.requireStringNotEmpty(emailOrName,password)){
             response.sendRedirect(request.getContextPath()+"/login.jsp");
+//            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
             return;
         }
         UserDao userDao = new UserDao();
@@ -135,12 +136,15 @@ public class AccountManagementServlet extends HttpServlet {
             User user = (User)session.getAttribute("userDetails");
             onlineUserList.remove(user.getUid());
             session.invalidate();
-            System.out.println("logout内部");
         }
         response.sendRedirect(request.getContextPath());
     }
 
     private void changeState(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        if(!Require.requireStringNotEmpty(request.getParameter("state"),request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int state = Integer.parseInt(request.getParameter("state"));
         int uid = Integer.parseInt(request.getParameter("uid"));
         UserDao userDao = new UserDao();

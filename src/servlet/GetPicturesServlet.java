@@ -3,6 +3,7 @@ package servlet;
 import com.alibaba.fastjson.JSONObject;
 import dao.PictureDao;
 import domain.Picture;
+import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +41,11 @@ public class GetPicturesServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message=Do not support get method").forward(request,response);
     }
 
-    private void collections(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private void collections(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("page"),request.getParameter("pageSize"),request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         int page = Integer.parseInt(request.getParameter("page"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));
@@ -52,13 +57,21 @@ public class GetPicturesServlet extends HttpServlet {
         response.getWriter().println(jsonObject);
     }
 
-    private void collectionCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void collectionCount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int uid = Integer.parseInt(request.getParameter("uid"));
         PictureDao pictureDao = new PictureDao();
         response.getWriter().println(pictureDao.getCollectionCountWithUid(uid));
     }
 
-    private void searchResultCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void searchResultCount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("content"),request.getParameter("filter"),request.getParameter("similar"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String content = request.getParameter("content");
         String filter = request.getParameter("filter");
         int similar = Integer.parseInt(request.getParameter("similar"));
@@ -66,7 +79,13 @@ public class GetPicturesServlet extends HttpServlet {
         response.getWriter().println(pictureDao.getCountWithFuzzyContent(content,filter,similar));
     }
 
-    private void searchResults(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private void searchResults(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("content"),request.getParameter("filter"),
+                request.getParameter("sort"),request.getParameter("page"),request.getParameter("pageSize"),
+                request.getParameter("similar"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         String content = request.getParameter("content");
         String filter = request.getParameter("filter");
@@ -81,13 +100,21 @@ public class GetPicturesServlet extends HttpServlet {
         response.getWriter().println(jsonObject);
     }
 
-    private void photoCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void photoCount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int uid = Integer.parseInt(request.getParameter("uid"));
         PictureDao pictureDao = new PictureDao();
         response.getWriter().println(pictureDao.getPhotoCountWithUid(uid));
     }
 
-    private void photos(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private void photos(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("page"),request.getParameter("pageSize"),request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         int page = Integer.parseInt(request.getParameter("page"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize"));

@@ -7,6 +7,7 @@ import dao.UserDao;
 import domain.InvitedUser;
 import domain.Picture;
 import domain.User;
+import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,10 +41,15 @@ public class FriendServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+//        doPost(request,response);
+        request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= Do not support GET method").forward(request,response);
     }
 
-    private void getMyFriends(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void getMyFriends(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         int uid = Integer.parseInt(request.getParameter("uid"));
         InvitationDao invitationDao = new InvitationDao();
@@ -53,7 +59,11 @@ public class FriendServlet extends HttpServlet {
         response.getWriter().println(jsonObject);
     }
 
-    private void getMyInvitation(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void getMyInvitation(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         int uid = Integer.parseInt(request.getParameter("uid"));
         InvitationDao invitationDao = new InvitationDao();
@@ -62,7 +72,11 @@ public class FriendServlet extends HttpServlet {
         response.getWriter().println(jsonObject);
     }
 
-    private void getInviteMe(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void getInviteMe(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         JSONObject jsonObject = new JSONObject();
         int uid = Integer.parseInt(request.getParameter("uid"));
         InvitationDao invitationDao = new InvitationDao();
@@ -71,7 +85,11 @@ public class FriendServlet extends HttpServlet {
         response.getWriter().println(jsonObject);
     }
 
-    private void agreeInvitation(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void agreeInvitation(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("invitationId"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int invitationId = Integer.parseInt(request.getParameter("invitationId"));
         InvitationDao invitationDao = new InvitationDao();
         if(invitationDao.agreeInvitation(invitationId)){
@@ -82,7 +100,11 @@ public class FriendServlet extends HttpServlet {
         }
     }
 
-    private void refuseInvitation(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void refuseInvitation(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("invitationId"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int invitationId = Integer.parseInt(request.getParameter("invitationId"));
         InvitationDao invitationDao = new InvitationDao();
         if(invitationDao.refuseInvitation(invitationId)){
@@ -93,7 +115,11 @@ public class FriendServlet extends HttpServlet {
         }
     }
 
-    private void searchUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void searchUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("fuzzyUsername"),request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String fuzzyUsername = request.getParameter("fuzzyUsername");
         int uid = Integer.parseInt(request.getParameter("uid"));
         UserDao userDao = new UserDao();
@@ -125,7 +151,11 @@ public class FriendServlet extends HttpServlet {
         response.getWriter().println(jsonObject);
     }
 
-    public void invite(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void invite(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("inviteeId"),request.getParameter("inviterId"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int inviteeId = Integer.parseInt(request.getParameter("inviteeId"));
         int inviterId = Integer.parseInt(request.getParameter("inviterId"));
         InvitationDao invitationDao = new InvitationDao();

@@ -1,6 +1,7 @@
 package servlet;
 
 import dao.FavorDao;
+import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,8 +39,12 @@ public class CollectionServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= Do not support GET method").forward(request,response);
     }
 
-    private void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void add(HttpServletRequest request, HttpServletResponse response) throws IOException ,ServletException{
 //        System.out.println("add");
+        if(!Require.requireStringNotEmpty(request.getParameter("imageID"),request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int uid = Integer.parseInt(request.getParameter("uid"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
         FavorDao favorDao = new FavorDao();
@@ -48,8 +53,12 @@ public class CollectionServlet extends HttpServlet {
         }
     }
 
-    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException ,ServletException{
 //        System.out.println("delete");
+        if(!Require.requireStringNotEmpty(request.getParameter("imageID"),request.getParameter("uid"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         int uid = Integer.parseInt(request.getParameter("uid"));
         int imageID = Integer.parseInt(request.getParameter("imageID"));
         FavorDao favorDao = new FavorDao();

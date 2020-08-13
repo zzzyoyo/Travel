@@ -5,6 +5,7 @@ import dao.GeoDao;
 import dao.PictureDao;
 import domain.GeoInformation;
 import domain.Picture;
+import functionPackage.Require;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +45,11 @@ public class GeoServlet extends HttpServlet {
         jsonObject.put("countries",countries);
         response.getWriter().println(jsonObject);
     }
-    private void cities(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private void cities(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        if(!Require.requireStringNotEmpty(request.getParameter("countryID"))){
+            request.getRequestDispatcher("/WEB-INF/jspFiles/error.jsp?message= required parameters are not provided").forward(request,response);
+            return;
+        }
         String countryID = request.getParameter("countryID");
         JSONObject jsonObject = new JSONObject();
         GeoDao geoDao = new GeoDao();
